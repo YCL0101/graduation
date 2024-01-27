@@ -1,0 +1,59 @@
+<view>
+  <!-- 头像选择按钮 -->
+  <view style="width: 100%; height: 200rpx; display: flex; align-items: center;">
+    <button class="wrapper" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+      <image src="{{avatarUrl}}" mode="widthFix" />
+    </button>
+  </view>
+
+  <!-- 昵称输入框 -->
+  <view class="box">
+    <text class="flex-item">昵称</text>
+    <input type="nickname" maxlength="20" value="{{userName}}" bindinput="onInputUserName"/>
+  </view>
+
+  <!-- 个性签名输入框 -->
+  <view style="width: 100%; height: 5rpx; color: rgba(255, 255, 255, 0);"></view>
+  <view class="box">
+    <text class="flex-item">个性签名</text>
+    <input type="text" maxlength="30" value="{{signature}}" bindinput="onInputSignature" />
+  </view>
+
+  <!-- 兴趣标签输入框 -->
+  <view style="width: 100%; height: 5rpx; color: rgba(255, 255, 255, 0);"></view>
+  <view class="box">
+    <text class="flex-item">兴趣标签</text>
+    <input type="text" maxlength="10" value="{{interests}}" bindinput="onInputInterests" />
+  </view>
+
+  <!-- 性别选择 -->
+  <view style="width: 100%; height: 5rpx; color: rgba(255, 255, 255, 0);"></view>
+  <view class="box">
+    <text class="flex-item" bind:tap="showGenderOptions">性别</text>
+      <picker mode="selector" range="{{genderOptions}}" bindchange="genderChange">
+        <view class="picker">
+          {{genderOptions[selectedGenderIndex]}}
+        </view>
+      </picker>
+  </view>
+  <!-- 生日选择 -->
+  <view style="width: 100%; height: 5rpx; color: rgba(255, 255, 255, 0);"></view>
+  <view class="box">
+    <text class="flex-item">生日</text>
+    <picker mode="date" value="{{birthday}}" start="1900-01-01" end="{{currentDate}}" bindchange="bindDateChange">{{birthday}}</picker>
+  </view>
+
+  <!-- 所在地选择 -->
+  <view style="width: 100%; height: 5rpx; color: rgba(255, 255, 255, 0);"></view>
+  <view class="box">
+    <text class="flex-item">所在地</text>
+    <picker mode="region" value="{{region}}" bindchange="bindRegionChange">
+      <view class="picker">
+        {{ region[0] }} - {{ region[1] }} - {{ region[2] }}
+      </view>
+    </picker>
+  </view>
+
+  <!-- 保存按钮 -->
+  <button bindtap="saveUserInfo">保存</button>
+</view>

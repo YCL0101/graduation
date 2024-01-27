@@ -1,0 +1,39 @@
+<!--index.wxml-->
+<view class="container">
+  <view bind:tap="gosearch" class="search">
+    <input placeholder="搜索" disabled="true"/>
+  </view>
+  <!-- 推荐 -->
+  <view style="font-weight: bold; padding: 2%;">
+    推荐
+  </view>
+  <view class="tuiJian-container">
+    <view class="tuiJian-overflow">
+      <view wx:for="{{imageList}}" wx:key="index" class="tuiJian-item" bind:tap="godetail" data-id="{{item.ScenicSpotID}}">
+        <image src="{{host}}/ScenicSpotImage/{{item.ScenicSpotImage}}" mode="aspectFill" alt="图片" />
+        <text>{{item.ScenicSpotName}}</text>
+      </view>
+      <text>更多内容</text>
+    </view>
+  </view>
+
+  <!-- 热门 -->
+  <view style="font-weight: bold; padding: 2%;">
+    热门
+  </view>
+  <view class="reMen-list">
+    <view wx:for="{{reMenImageList}}" wx:key="index" class="reMen-item" bind:tap="godetail" data-id="{{item.ScenicSpotID}}">
+      <view class="reMen-neiRong">
+        <image src="{{host}}/ScenicSpotImage/{{item.ScenicSpotImage}}" class="reMen-img" mode="aspectFill" alt="图片" />
+
+        <view class="reMenIntroduce">
+          <view style="font-weight: bold;">{{item.ScenicSpotName}}</view>
+          <text>简短介绍</text>
+        </view>
+      </view>
+      <t-divider />
+    </view>
+  </view>
+
+
+</view>

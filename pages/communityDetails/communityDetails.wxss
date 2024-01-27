@@ -1,0 +1,46 @@
+
+.post {
+  border: 1px solid #ccc;
+  /* padding: 10px; */
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+.post-content {
+  margin-top: 10px;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+.title{
+  height: 2000rpx;
+  font-size: 16px;
+  /* 设置标题字体大小 */
+  font-weight: bold;
+  /* 设置标题字体粗细 */
+  margin-bottom: 2%;
+}
+.content{
+  margin-top: 10rpx;
+  /* 设置上外边距 */
+  max-height: 4em;
+  /* 行高，根据实际需求调整 */
+}
+.post-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+.info-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+

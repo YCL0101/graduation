@@ -1,0 +1,36 @@
+<view class="container">
+  <!-- 搜索框 -->
+  <view class="search">
+    <input placeholder="搜索"/>
+  </view>
+
+  <!-- 搜索历史 -->
+  <view class="history">
+    <view class="title">搜索历史</view>
+    <view class="history-list">
+      <block wx:for="{{ historyList }}" wx:key="index">
+        <view class="history-item" bindtap="onHistoryItemClick">{{ item }}</view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 搜索结果 -->
+  <view class="result">
+    <view class="title">搜索结果</view>
+    <view class="result-list">
+      <block wx:for="{{ searchResults }}" wx:key="index">
+        <view class="result-item">{{ item }}</view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 热门搜索 -->
+  <view class="hot">
+    <view class="title">热门搜索</view>
+    <view class="hot-list">
+      <block wx:for="{{ hotKeywords }}" wx:key="index">
+        <view class="hot-item" bindtap="onHotItemClick">{{ item }}</view>
+      </block>
+    </view>
+  </view>
+</view>

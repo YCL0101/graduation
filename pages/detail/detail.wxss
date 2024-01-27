@@ -1,0 +1,14 @@
+.detailBox{
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+}
+image{
+  width: 100%;
+}
+.indented-text {
+  width: 100%;
+  text-align: center;
+  font-weight:bold;
+}

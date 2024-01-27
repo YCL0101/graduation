@@ -1,0 +1,36 @@
+.login {
+  width: 100%;
+  height: 300rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 0rpx solid rgba(124, 121, 121, 0.39);
+}
+
+.avatar-example {
+  display: flex;
+  justify-content: center;
+  /* 水平居中 */
+  align-items: center;
+  /* 垂直居中 */
+  width: 130rpx;
+  /* 按钮宽度 */
+  height: 130rpx;
+  /* 按钮高度 */
+  padding: 0;
+  /* 去除内边距 */
+  background-color: transparent;
+  /* 去除背景色 */
+  border: none;
+  /* 去除边框 */
+  border-radius: 50%;
+}
+.chooseStyle{
+  display: flex;
+  height: 70rpx;
+  align-items: center;
+  padding:0 0 0 20rpx;
+  /* margin-bottom: 20rpx; */
+  border-bottom: 0rpx solid rgba(124, 121, 121, 0.39);
+}

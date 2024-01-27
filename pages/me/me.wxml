@@ -1,0 +1,22 @@
+<view>
+  <view wx:if="{{ifLogin}}" class="login">
+    <image class="avatar-example" src="{{avatarUrl}}" />
+    <view style="font-size: large;">
+      {{userName}}
+    </view>
+    <view wx:if="{{signature}}" style="font-size: 30rpx;margin-top: 20rpx;">
+      {{signature}}
+    </view>
+  </view>
+  <view wx:else="{{!ifLogin}}" class="login" bind:tap="goLogin">
+    <image class="avatar-example" src="{{host}}/headPortrait/默认头像.png" />
+    <view style="font-size: large;">未登录</view>
+  </view>
+  <button bind:tap="goPersonalDetails" class="chooseStyle">
+    个人详情
+  </button>
+  <button open-type="feedback" class="chooseStyle">反馈</button>
+  <button class="chooseStyle" bind:tap="logOut">
+    退出登录
+  </button>
+</view>

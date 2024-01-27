@@ -1,0 +1,124 @@
+.swiper-item {
+  /* height: auto; */
+  /* box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); */
+  /* background-color:teal; */
+}
+
+/* 样式注释：日记列表整体样式 */
+.diary-list {
+  padding: 20rpx;
+  /* 设置整体内边距 */
+}
+
+/* 样式注释：每个日记项的样式 */
+.diary-item {
+  height: 210rpx;
+  border: 1rpx solid #ccc;
+  border-radius: 32rpx;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  /* 设置边框样式 */
+  padding: 20rpx;
+  margin: 20rpx;
+}
+
+/*日记标题样式 */
+.diary-title {
+  font-size: 16px;
+  /* 设置标题字体大小 */
+  font-weight: bold;
+  /* 设置标题字体粗细 */
+  display: -webkit-box;
+  /* 设置弹性盒子布局 */
+  -webkit-box-orient: vertical;
+  /* 设置弹性盒子垂直排列 */
+  overflow: hidden;
+  /* 隐藏溢出内容 */
+  text-overflow: ellipsis;
+  /* 使用省略号表示文本溢出 */
+  -webkit-line-clamp: 1;
+  /* 显示的行数，这里设置为1，表示只显示一行 */
+  max-height: 1.2em;
+  /* 行高，根据实际需求调整 */
+}
+
+/*日记内容样式 */
+.diary-content {
+  margin-top: 10rpx;
+  /* 设置上外边距 */
+  display: -webkit-box;
+  /* 设置弹性盒子布局 */
+  -webkit-box-orient: vertical;
+  /* 设置弹性盒子垂直排列 */
+  overflow: hidden;
+  /* 隐藏溢出内容 */
+  text-overflow: ellipsis;
+  /* 使用省略号表示文本溢出 */
+  -webkit-line-clamp: 3;
+  /* 显示的行数，这里设置为1，表示只显示一行 */
+  max-height: 4em;
+  /* 行高，根据实际需求调整 */
+}
+
+/*日记时间样式 */
+.diary-time {
+  color: #666;
+  /* 设置文字颜色 */
+  margin-top: 20rpx;
+  /* 设置上外边距 */
+}
+
+/* 样式注释：浮动按钮样式 */
+.float-button {
+  position: fixed;
+  /* 设置固定定位 */
+  bottom: 20rpx;
+  /* 设置底部位置 */
+  right: 20rpx;
+  /* 设置右侧位置 */
+  width: 80rpx;
+  /* 设置按钮宽度 */
+  height: 80rpx;
+  /* 设置按钮高度 */
+  background-color: #4CAF50;
+  /* 设置背景颜色 */
+  border-radius: 50%;
+  /* 设置圆角 */
+  text-align: center;
+  /* 设置文本居中 */
+  line-height: 80rpx;
+  /* 设置行高 */
+}
+
+/* 样式注释：加号图标样式 */
+.plus-sign {
+  color: #fff;
+  /* 设置图标颜色 */
+  font-size: 60rpx;
+  /* 设置图标字体大小 */
+  line-height: 100%;
+  /* 设置图标行高 */
+}
+
+.swiper-item-btn {
+  width: 200rpx;
+  display: flex;
+  align-items: center;
+  /* 将子元素在垂直方向上居中 */
+}
+
+.action-btn {
+  /* 你的操作按钮的样式设置，例如背景色、边框等 */
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 5px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.action-btn-delete {
+  width: 100rpx;
+  background-color: #e74c3c;
+  /* 红色 */
+  text-align: center;
+  /* 将文本居中 */
+}

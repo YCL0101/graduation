@@ -1,0 +1,18 @@
+<view class="post" wx:for="{{postList}}" wx:key="index" data-id="{{item.id}}" data-username="{{item.userName}}" data-avatarurl="{{item.avatarUrl}}" bind:tap="goDetails">
+  <view class="post-info" >
+    <image class="avatar" src="{{host}}/headPortrait/{{item.avatarUrl}}"></image>
+    <view class="info-text">
+      <text class="nickname">{{item.userName}}</text>
+      <text class="post-time">{{item.publishTime}}</text>
+    </view>
+  </view>
+  <view class="post-content">
+    <rich-text class="title" nodes="{{item.title}}"></rich-text>
+    <rich-text class="content" nodes="{{item.content}}"></rich-text>
+  </view>
+  <view class="post-stats">
+    <image src="../image/眼睛.png"></image><text class="view-count">{{item.viewCount}}</text>
+    <image src="../image/评论.png"></image><text class="comment-count">{{item.commentCount}}</text>
+    <image src="../image/点赞.png"></image><text class="like-count">{{item.likeCount}}</text>
+  </view>
+</view>

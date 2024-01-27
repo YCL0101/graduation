@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/me/me",
+    "pages/search/search",
+    "pages/community/community",
+    "pages/diary/diary",
+    "pages/detail/detail",
+    "pages/login/login",
+    "pages/personalDetails/personalDetails",
+    "pages/diaryDetails/diaryDetails",
+    "pages/communityDetails/communityDetails"
+  ],
+  "lazyCodeLoading": "requiredComponents",
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "主页",
+      "iconPath": "pages/image/主页.png",
+      "selectedIconPath": "pages/image/主页选中.png"
+    }, {
+      "pagePath": "pages/community/community",
+      "text": "社区",
+      "iconPath": "pages/image/社区.png",
+      "selectedIconPath": "pages/image/社区选中.png"
+    }, {
+      "pagePath": "pages/diary/diary",
+      "text": "日记",
+      "iconPath": "pages/image/日记.png",
+      "selectedIconPath": "pages/image/日记选中.png"
+    }, {
+      "pagePath": "pages/me/me",
+      "text": "我的",
+      "iconPath": "pages/image/我的.png",
+      "selectedIconPath": "pages/image/我的选中.png"
+    }]
+  },
+  "sitemapLocation": "sitemap.json"
+}

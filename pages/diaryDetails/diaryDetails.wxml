@@ -1,0 +1,16 @@
+<view class="post-page">
+
+  <view class="input-container">
+    <input class="input" placeholder="请输入标题" bindblur="titleInput" value="{{title}}" />
+  </view>
+  <view class="input-container">
+    <editor id="editor" class="content" bindblur="editorInput"/>
+  </view>
+  
+  <view class="upload-container">
+    <image bindtap="chooseImage" src="/pages/image/图片.png" />
+    <image bindtap="chooseVideo" src="/pages/image/视频.png" />
+    <image bindtap="saveContent" src="/pages/image/保存.png" />
+    <image bindtap="publishContent" src="/pages/image/发布.png" />
+  </view>
+</view>

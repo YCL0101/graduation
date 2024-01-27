@@ -1,0 +1,8 @@
+/**app.wxss**/
+page {
+  /* background-color: #eeeeee; */
+   --td-brand-color: background-color: white;
+}
+.container {
+  padding:2%;
+}

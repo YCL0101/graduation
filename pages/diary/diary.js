@@ -1,0 +1,78 @@
+const app = getApp();
+const host = app.globalData.host;
+
+Page({
+  data: {
+    diaries: [],
+  },
+
+  // 删除按钮点击事件处理函数
+  deleteDiary: function (event) {
+    const id = event.currentTarget.dataset.id;
+    // 向后端发起删除请求
+    wx.request({
+      url: host + '/user/deleteNote',
+      method: 'POST',
+      data: { id: id },
+      success: (res) => {
+        // 删除成功后刷新页面
+        if (res.statusCode === 200) {
+          this.fetchNotes();
+        } else {
+          console.error('删除笔记失败。状态码:', res.statusCode);
+        }
+      },
+      fail: (error) => {
+        console.error('删除笔记时出错:', error);
+      },
+    });
+  },
+
+  onLoad: function () {
+    // 在页面初次加载时从后端获取笔记
+    // this.fetchNotes();
+  },
+
+  onShow: function () {
+    // 在页面显示时刷新数据
+    // console.log(1)
+    setTimeout(() => {
+      this.fetchNotes();
+    }, 1); 
+  },
+
+  fetchNotes: function () {
+    const storedUserInfo = wx.getStorageSync("personalDetails");
+    const phoneNumber = storedUserInfo.phoneNumber;
+
+    // 向后端发起请求以获取笔记
+    wx.request({
+      url: host + '/user/notes',
+      method: 'POST',
+      data: { phoneNumber: phoneNumber },
+      success: (res) => {
+        // 检查请求是否成功
+        if (res.statusCode === 200) {
+          // 使用从后端获取的笔记更新diaries数据属性
+          console.log(res.data.notes)
+          this.setData({
+            diaries: res.data.notes,
+          });
+        } else {
+          console.error('获取笔记失败。状态码:', res.statusCode);
+        }
+      },
+      fail: (error) => {
+        console.error('获取笔记时出错:', error);
+      },
+    });
+  },
+
+  goToDetail: function (event) {
+    const id = event.currentTarget.dataset.id;
+    // 跳转到日记详情页面
+    wx.navigateTo({
+      url: '/pages/diaryDetails/diaryDetails?id=' + id,
+    });
+  },
+});

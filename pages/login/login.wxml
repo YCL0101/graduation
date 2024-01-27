@@ -1,0 +1,15 @@
+<view style="margin:0 40rpx ;">
+  <view style="font-size: large; margin-top: 100rpx;">
+    手机动态密码登录
+  </view>
+  <view style="font-size: small;margin-top: 30rpx;">
+    未注册手机登录后即可完成注册
+  </view>
+<view style="display: flex;margin-top: 100rpx;align-items:center;">
+手机号：<input type="number" bindinput="phoneNumberInput" value="{{phoneNumber}}"/>
+</view>
+<view style="display: flex;justify-items: center;">
+密码：<input type="number" bindinput="passwordInput" value="{{passWord}}"/>
+</view>
+<button bindtap="login">登录</button>
+</view>

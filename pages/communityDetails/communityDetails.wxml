@@ -1,0 +1,16 @@
+<view>
+  <view class="post-info">
+    <image class="avatar" src="{{host}}/headPortrait/{{avatarUrl}}"></image>
+    <view class="info-text">
+      <text class="nickname">{{userName}}</text>
+      <text class="post-time">{{postInfo.publishTime}}</text>
+    </view>
+  </view>
+  <view class="post-content">
+    <rich-text class="title" nodes="{{postInfo.title}}"></rich-text>
+    <rich-text class="content" nodes="{{postInfo.content}}"></rich-text>
+  </view>
+  <view style="margin-top: 2%;">
+  <text style="font-weight: bold;">评论</text>
+  </view>
+</view>

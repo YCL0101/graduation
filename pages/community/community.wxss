@@ -1,0 +1,73 @@
+.post {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+.post-content {
+  margin-top: 10px;
+}
+.title{
+  font-size: 16px;
+  /* 设置标题字体大小 */
+  font-weight: bold;
+  /* 设置标题字体粗细 */
+  display: -webkit-box;
+  /* 设置弹性盒子布局 */
+  -webkit-box-orient: vertical;
+  /* 设置弹性盒子垂直排列 */
+  overflow: hidden;
+  /* 隐藏溢出内容 */
+  text-overflow: ellipsis;
+  /* 使用省略号表示文本溢出 */
+  -webkit-line-clamp: 1;
+  /* 显示的行数，这里设置为1，表示只显示一行 */
+  max-height: 1.2em;
+  /* 行高，根据实际需求调整 */
+}
+.content{
+  margin-top: 10rpx;
+  /* 设置上外边距 */
+  display: -webkit-box;
+  /* 设置弹性盒子布局 */
+  -webkit-box-orient: vertical;
+  /* 设置弹性盒子垂直排列 */
+  overflow: hidden;
+  /* 隐藏溢出内容 */
+  text-overflow: ellipsis;
+  /* 使用省略号表示文本溢出 */
+  -webkit-line-clamp: 3;
+  /* 显示的行数，这里设置为1，表示只显示一行 */
+  max-height: 4em;
+  /* 行高，根据实际需求调整 */
+}
+.post-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.post-stats {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.post-stats image{
+  width: 20px;
+  height: 20px;
+  padding:0 12rpx;
+}
+

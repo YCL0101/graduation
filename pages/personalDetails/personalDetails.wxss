@@ -1,0 +1,37 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  /* 水平居中 */
+  align-items: center;
+  /* 垂直居中 */
+  width: 130rpx;
+  /* 按钮宽度 */
+  height: 130rpx;
+  /* 按钮高度 */
+  padding: 0;
+  /* 去除内边距 */
+  background-color: transparent;
+  /* 去除背景色 */
+  border: none;
+  /* 去除边框 */
+  border-radius: 50%;
+}
+
+.box {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  height: 100rpx;
+  align-items: center;
+  justify-items: space-between;
+  /* 两端分布 */
+  padding: 0 10rpx;
+}
+.flex-item {
+  flex: 1; /* 均分父容器的宽度 */
+}
+.box input {
+  /* width: 200rpx; */
+  height: 100%;
+  text-align: right;
+  /* border: 2px solid; */
+}

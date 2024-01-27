@@ -1,0 +1,39 @@
+.post-page {
+  height: 100%;
+  padding: 20rpx;
+}
+
+.input-container {
+  /* height: 100%; */
+  margin-bottom: 20rpx;
+}
+.input{
+  width: 100%;
+  height: 80rpx;
+  border-bottom: 1rpx solid #ccc;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+.content{
+  width: 100%;
+  height: 1000rpx;
+  /* background-color: violet; */
+}
+.upload-container {
+  display: flex;
+  position: fixed;
+  bottom: 20rpx;
+}
+
+.upload-container image {
+  display: flex;
+  max-width: 30px;
+  max-height: 30px;
+  padding-right: 20rpx;
+}
+
+.selected-files {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20rpx;
+}

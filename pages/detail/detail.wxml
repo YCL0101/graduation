@@ -1,0 +1,6 @@
+<!--pages/detail/detail.wxml-->
+<view class="detailBox">
+  <image src="{{host}}/ScenicSpotImage/{{detailList.ScenicSpotImage}}" mode="aspectFill" alt="图片" />
+  <text class="indented-text">{{detailList.ScenicSpotName}}</text>
+  <rich-text nodes="{{detailList.ScenicSpotDescription}}" />
+</view>
