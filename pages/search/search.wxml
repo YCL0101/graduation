@@ -1,36 +1,51 @@
 <view class="container">
   <!-- 搜索框 -->
   <view class="search">
-    <input placeholder="搜索"/>
+    <input placeholder="请输入关键词" value="{{searchKeyword}}" bindblur="onSearch" bindinput="onInputChange" maxlength="10" />
   </view>
-
-  <!-- 搜索历史 -->
-  <view class="history">
-    <view class="title">搜索历史</view>
-    <view class="history-list">
-      <block wx:for="{{ historyList }}" wx:key="index">
-        <view class="history-item" bindtap="onHistoryItemClick">{{ item }}</view>
-      </block>
+  <view wx:if="{{searchKeyword!==''&&searchResults.length>0}}">
+      <!-- 搜索结果 -->
+      <view class="post" wx:for="{{searchResults}}" wx:key="index" data-id="{{item.id}}" data-username="{{item.userName}}" data-avatarurl="{{item.avatarUrl}}" bind:tap="goDetails">
+      <view class="post-info">
+        <image class="avatar" src="{{host}}/headPortrait/{{item.avatarUrl}}"></image>
+        <view class="info-text">
+          <text class="nickname">{{item.userName}}</text>
+          <text class="post-time">{{item.publishTime}}</text>
+        </view>
+      </view>
+      <view class="post-content">
+        <rich-text class="title" nodes="{{item.title}}"></rich-text>
+        <rich-text class="content" nodes="{{item.content}}"></rich-text>
+      </view>
+      <view class="post-stats">
+        <image src="../image/眼睛.png"></image><text class="view-count">{{item.viewCount}}</text>
+        <image src="../image/评论.png"></image><text class="comment-count">{{item.commentCount}}</text>
+        <image src="../image/点赞.png"></image><text class="like-count">{{item.likeCount}}</text>
+      </view>
     </view>
   </view>
-
-  <!-- 搜索结果 -->
-  <view class="result">
-    <view class="title">搜索结果</view>
-    <view class="result-list">
-      <block wx:for="{{ searchResults }}" wx:key="index">
-        <view class="result-item">{{ item }}</view>
-      </block>
+  <view wx:else>
+    <!-- 搜索历史 -->
+    <view class="history">
+      <view style="display: flex; justify-content: space-between; align-items: center;">
+        <view class="title">搜索历史</view>
+        <view wx:if="{{historyList.length>0}}" class="clearHistory" bind:tap="clearHistory">清空历史</view>
+      </view>
+      <view class="history-list">
+        <block wx:for="{{ historyList }}" wx:key="index">
+          <view class="history-item" data-keyword="{{ item }}" bindtap="onHistoryItemClick">{{ item }}</view>
+        </block>
+      </view>
     </view>
-  </view>
-
-  <!-- 热门搜索 -->
-  <view class="hot">
-    <view class="title">热门搜索</view>
-    <view class="hot-list">
-      <block wx:for="{{ hotKeywords }}" wx:key="index">
-        <view class="hot-item" bindtap="onHotItemClick">{{ item }}</view>
-      </block>
+    <!-- 热门搜索 -->
+    <view class="hot">
+      <view class="title">热门搜索</view>
+      <view class="hot-list">
+        <block wx:for="{{ hotKeywords }}" wx:key="index">
+          <view class="hot-item" data-keyword="{{ item }}" bindtap="onHotItemClick">{{ item }}</view>
+        </block>
+      </view>
     </view>
+
   </view>
 </view>
