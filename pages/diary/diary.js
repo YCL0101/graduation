@@ -3,20 +3,28 @@ const host = app.globalData.host;
 
 Page({
   data: {
+    currentSwiper:0,
     diaries: [],
   },
 
   // 删除按钮点击事件处理函数
   deleteDiary: function (event) {
+    // 切换到第一个滑块
+    this.setData({
+      currentSwiper: 0,
+    });
     const id = event.currentTarget.dataset.id;
     // 向后端发起删除请求
     wx.request({
-      url: host + '/user/deleteNote',
+      url: host + '/api/deleteNote',
       method: 'POST',
-      data: { id: id },
+      data: {
+        id: id
+      },
       success: (res) => {
         // 删除成功后刷新页面
         if (res.statusCode === 200) {
+
           this.fetchNotes();
         } else {
           console.error('删除笔记失败。状态码:', res.statusCode);
@@ -38,7 +46,7 @@ Page({
     // console.log(1)
     setTimeout(() => {
       this.fetchNotes();
-    }, 1); 
+    }, 100);
   },
 
   fetchNotes: function () {
@@ -49,7 +57,9 @@ Page({
     wx.request({
       url: host + '/user/notes',
       method: 'POST',
-      data: { phoneNumber: phoneNumber },
+      data: {
+        phoneNumber: phoneNumber
+      },
       success: (res) => {
         // 检查请求是否成功
         if (res.statusCode === 200) {

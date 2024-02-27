@@ -11,7 +11,7 @@ Page({
   onShow() {
     const storedUserInfo = wx.getStorageSync("personalDetails");
     if(storedUserInfo.userLogin){
-      console.log(storedUserInfo)
+      // console.log(storedUserInfo)
       this.setData({
         ifLogin: storedUserInfo.userLogin,
         userName: storedUserInfo.userName,

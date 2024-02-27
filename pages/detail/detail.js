@@ -24,7 +24,7 @@ Page({
       },
       success: (res) => {
         // console.log(2);
-        // console.log(res.data);
+        console.log(res.data);
   
         // 将服务器返回的数据赋值给 detailList 数组
         this.setData({

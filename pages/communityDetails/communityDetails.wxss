@@ -41,6 +41,44 @@
   flex-direction: column;
   justify-content: center;
 }
+.comment-info{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+  transform: scale(0.8) translateX(-10%); /* 缩小为初始尺寸的80% 并向左移动20% */
+}
+.comment {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  padding: 4px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+.one-content{
+  padding-left: 13%;
+}
+input {
+  flex: 1;
+  height: 30px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+button {
+  height: 40px;
+  background-color: #007aff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0 10px;
+  line-height: 40px;
+}
 
 
 

@@ -28,7 +28,7 @@
 
         <view class="reMenIntroduce">
           <view style="font-weight: bold;">{{item.ScenicSpotName}}</view>
-          <text>简短介绍</text>
+          <text>{{item.ShortDescription}}</text>
         </view>
       </view>
       <t-divider />

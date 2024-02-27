@@ -1,6 +1,6 @@
 <view class="diary-list">
   <block wx:for="{{diaries}}" wx:key="index">
-    <swiper class="swiper" >
+    <swiper class="swiper" current="{{currentSwiper}}" >
       <swiper-item class="swiper-item">
         <view class="diary-item" bind:tap="goToDetail" data-id="{{item.id}}">
           <text class="diary-title">{{item.title}}</text>
@@ -8,9 +8,7 @@
           <text class="diary-time">{{item.updateTime}}</text>
         </view>
       </swiper-item>
-      <!-- 添加两个按钮 -->
-      <swiper-item class="swiper-item-btn">
-        <!-- <view class="action-btn-stick" bindtap="stickDiary" data-id="{{item.id}}">顶置</view> -->
+      <swiper-item class="swiper-item">
         <view class="action-btn-delete" bindtap="deleteDiary" data-id="{{item.id}}">删除</view>
       </swiper-item>
     </swiper>

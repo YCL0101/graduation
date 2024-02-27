@@ -10,7 +10,35 @@
     <rich-text class="title" nodes="{{postInfo.title}}"></rich-text>
     <rich-text class="content" nodes="{{postInfo.content}}"></rich-text>
   </view>
-  <view style="margin-top: 2%;">
   <text style="font-weight: bold;">评论</text>
+  <view style="margin-top: 2%; padding-bottom: 60px;" >
+  <!-- 主评论 -->
+  <view wx:for="{{commentGroup}}" wx:key="index">
+    <view class="comment-info">
+      <image class="avatar" src="{{host}}/headPortrait/{{item.avatarUrl}}"></image>
+      <view class="info-text">
+        <text class="nickname">{{item.userName}}</text>
+        <text class="post-time">{{item.time}}</text>
+      </view>
+    </view>
+    <view class="one-content">{{item.content}}</view>
+  </view>
+  <!-- 子评论 -->
+  <view wx:if="{{item.children && item.children.length > 0}}" wx:for="{{item.children}}"wx:for-index="0" wx:key="index">
+    <view class="comment-info">
+      <image class="avatar" src="{{host}}/headPortrait/{{childItem.avatarUrl}}"></image>
+      <view class="info-text">
+        <text class="nickname">{{childItem.userName}}</text>
+        <text class="post-time">{{childItem.time}}</text>
+      </view>
+      <view>{{childItem.content}}</view>
+    </view>
+  </view>
+</view>
+
+
+  <view class="comment">
+    <input placeholder="输入评论内容" bindinput="bindInputComment" value="{{commentText}}"></input>
+    <button bindtap="publishComment">发布</button>
   </view>
 </view>

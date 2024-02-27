@@ -12,7 +12,7 @@
 
 /* 样式注释：每个日记项的样式 */
 .diary-item {
-  height: 210rpx;
+  height: 70%;
   border: 1rpx solid #ccc;
   border-radius: 32rpx;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
@@ -99,26 +99,21 @@
   /* 设置图标行高 */
 }
 
-.swiper-item-btn {
-  width: 200rpx;
-  display: flex;
-  align-items: center;
-  /* 将子元素在垂直方向上居中 */
-}
 
-.action-btn {
-  /* 你的操作按钮的样式设置，例如背景色、边框等 */
-  display: inline-block;
-  padding: 5px 10px;
-  margin: 5px;
-  color: rgb(255, 255, 255);
-  cursor: pointer;
-}
 
 .action-btn-delete {
-  width: 100rpx;
+  height: 70%;
+  border: 1rpx solid #ccc;
+  border-radius: 32rpx;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  /* 设置边框样式 */
+  padding: 20rpx;
+  margin: 20rpx;
   background-color: #e74c3c;
+  font-size: 40px;
   /* 红色 */
   text-align: center;
   /* 将文本居中 */
+  line-height: 2;
+  /* 行高是字体大小的两倍，文本在行框中垂直居中。 */
 }

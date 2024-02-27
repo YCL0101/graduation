@@ -5,13 +5,13 @@
         "compileHotReLoad": true,
         "urlCheck": false
     },
-    "libVersion": "3.3.1",
+    "libVersion": "3.3.4",
     "condition": {
         "miniprogram": {
             "list": [
                 {
-                    "name": "",
-                    "pathName": "pages/personalDetails/personalDetails",
+                    "name": "pages/communityDetails/communityDetails",
+                    "pathName": "pages/communityDetails/communityDetails",
                     "query": "",
                     "launchMode": "default",
                     "scene": null

@@ -2,14 +2,16 @@
   height: 60rpx;
   margin-top: 4rpx;
   /* background-color: white; */
-  background-color: #eeeeee; 
+  background-color: #eeeeee;
   border: 8rpx solid rgba(0, 0, 0, 0);
   border-radius: 10rpx;
 }
-.search input{
+
+.search input {
   align-items: center;
   text-align: center;
 }
+
 .tuiJian-container {
   /* background-color: white; */
   width: 100%;
@@ -42,7 +44,8 @@
   /* 图片最大宽度为容器宽度的百分比 */
   max-height: 100%;
   border-radius: 20rpx;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* 添加阴影效果 */
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  /* 添加阴影效果 */
 }
 
 .tuiJian-item text {
@@ -62,21 +65,32 @@
 .reMen-neiRong {
   display: flex;
   align-items: center;
-  padding: 16rpx;
+  padding: 8rpx;
 }
 
 .reMen-neiRong image {
-  width: 150px;
+  width: 50%;
   height: 100px;
   border-radius: 20rpx;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* 添加阴影效果 */
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  /* 添加阴影效果 */
+  
 }
 
 .reMenIntroduce {
+  width: 50%;
+  height: 100px;
   display: flex;
   flex-direction: column;
-  padding: 16rpx;
-  /* border-radius: 10px; */
+  padding: 10rpx;
+  overflow: hidden;
+}
+
+.reMenIntroduce text {
+  /* white-space: nowrap; */
+  /* overflow: hidden; */
+  /* text-overflow: ellipsis; */
+  font-size: 12px;
 }
 
 .reMen-img {
