@@ -12,3 +12,10 @@ image{
   text-align: center;
   font-weight:bold;
 }
+.nav{
+  margin: 10px;
+  border-radius: 20px;
+}
+map{
+  width: 100%;
+}

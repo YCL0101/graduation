@@ -47,11 +47,7 @@ Page({
     this.setData({
       ifLogin: false,
     });
-    // 更新本地缓存中对应的字段
-    const updatedUserInfo = wx.getStorageSync("personalDetails") || {};
-    wx.setStorageSync("personalDetails", {
-      ...updatedUserInfo,
-      userLogin:false
-    });
+   // 清除所有本地缓存
+  wx.clearStorageSync();
   }
 });

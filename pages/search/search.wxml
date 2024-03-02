@@ -42,7 +42,7 @@
       <view class="title">热门搜索</view>
       <view class="hot-list">
         <block wx:for="{{ hotKeywords }}" wx:key="index">
-          <view class="hot-item" data-keyword="{{ item }}" bindtap="onHotItemClick">{{ item }}</view>
+          <view class="hot-item" data-keyword="{{ item.keyword }}" bindtap="onHotItemClick">{{ item.keyword }}</view>
         </block>
       </view>
     </view>

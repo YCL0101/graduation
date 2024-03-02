@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
   <view bind:tap="gosearch" class="search">
-    <input placeholder="搜索" disabled="true"/>
+    <input placeholder="{{weather.city}} {{weather.casts[0].dayweather}}/{{weather.casts[0].nightweather}}"disabled="true"/>
   </view>
   <!-- 推荐 -->
   <view style="font-weight: bold; padding: 2%;">
@@ -9,11 +9,11 @@
   </view>
   <view class="tuiJian-container">
     <view class="tuiJian-overflow">
-      <view wx:for="{{imageList}}" wx:key="index" class="tuiJian-item" bind:tap="godetail" data-id="{{item.ScenicSpotID}}">
+      <view wx:for="{{recommendList}}" wx:key="index" class="tuiJian-item" bind:tap="godetail" data-id="{{item.ScenicSpotID}}">
         <image src="{{host}}/ScenicSpotImage/{{item.ScenicSpotImage}}" mode="aspectFill" alt="图片" />
         <text>{{item.ScenicSpotName}}</text>
       </view>
-      <text>更多内容</text>
+      <!-- <text>更多内容</text> -->
     </view>
   </view>
 
@@ -22,7 +22,7 @@
     热门
   </view>
   <view class="reMen-list">
-    <view wx:for="{{reMenImageList}}" wx:key="index" class="reMen-item" bind:tap="godetail" data-id="{{item.ScenicSpotID}}">
+    <view wx:for="{{hotList}}" wx:key="index" class="reMen-item" bind:tap="godetail" data-id="{{item.ScenicSpotID}}">
       <view class="reMen-neiRong">
         <image src="{{host}}/ScenicSpotImage/{{item.ScenicSpotImage}}" class="reMen-img" mode="aspectFill" alt="图片" />
 

@@ -93,7 +93,7 @@ Page({
 
   // 点击发布按钮时触发
   publishComment() {
-    const postId = 2; // 示例中将postId设置为2，您可以根据实际情况设置
+    const postId = this.data.id; // 示例中将postId设置为2，您可以根据实际情况设置
     const floor = null;
     const commentText = this.data.commentText;
     const commentGroup = this.data.commentGroup;
@@ -170,6 +170,7 @@ console.log(existingFloorIndex)
   // 通过postId发送commentGroup到后端
   postComment(postId, commentGroup) {
     // 使用小程序的wx.request发送请求
+    console.log('postId'+postId)
     wx.request({
       url: host + '/api/postComment',
       method: 'POST',

@@ -5,7 +5,7 @@
         <view class="diary-item" bind:tap="goToDetail" data-id="{{item.id}}">
           <text class="diary-title">{{item.title}}</text>
           <rich-text class="diary-content" nodes="{{item.content}}"></rich-text>
-          <text class="diary-time">{{item.updateTime}}</text>
+          <text class="diary-time">{{item.formattedUpdateTime}}</text>
         </view>
       </swiper-item>
       <swiper-item class="swiper-item">

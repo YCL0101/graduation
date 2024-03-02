@@ -4,7 +4,7 @@
       <image class="avatar" src="{{host}}/headPortrait/{{item.avatarUrl}}"></image>
       <view class="info-text">
         <text class="nickname">{{item.userName}}</text>
-        <text class="post-time">{{item.publishTime}}</text>
+        <text class="post-time">{{item.formattedPublishTime}}</text>
       </view>
     </view>
     <view class="post-content">

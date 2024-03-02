@@ -1,10 +1,12 @@
 .search {
   height: 60rpx;
   margin-top: 4rpx;
-  /* background-color: white; */
   background-color: #eeeeee;
   border: 8rpx solid rgba(0, 0, 0, 0);
   border-radius: 10rpx;
+  display: flex; /* 使用 Flex 布局 */
+  justify-content: center; /* 在水平方向上居中 */
+  align-items: center; /* 在垂直方向上居中 */
 }
 
 .search input {

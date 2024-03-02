@@ -1,10 +1,9 @@
 .post-page {
-  height: 100%;
   padding: 20rpx;
 }
 
 .input-container {
-  /* height: 100%; */
+  height: 100%;
   margin-bottom: 20rpx;
 }
 .input{
@@ -16,13 +15,17 @@
 }
 .content{
   width: 100%;
-  height: 1000rpx;
-  /* background-color: violet; */
+  height: auto;
+  padding-bottom: 35px;
 }
 .upload-container {
+  width: 100%;
+  height: 35px;
   display: flex;
   position: fixed;
   bottom: 20rpx;
+  background-color: white;
+  padding-left: 5%;
 }
 
 .upload-container image {

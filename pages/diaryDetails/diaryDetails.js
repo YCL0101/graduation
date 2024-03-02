@@ -11,19 +11,12 @@ Page({
     issue: false,
   },
 
-  // 防抖函数
-  // debounce(func, delay) {
-  //   clearTimeout(this.debounceTimer);
-  //   this.debounceTimer = setTimeout(() => func(), delay);
-  // },
-
   // 处理标题输入
   titleInput(e) {
     const title = e.detail.value;
     this.setData({
       title
     });
-    // this.debounce(this.sendDataToBackend, DEBOUNCE_DELAY);
   },
 
   // 处理编辑器输入
@@ -32,7 +25,7 @@ Page({
     this.setData({
       content
     });
-    // this.debounce(this.sendDataToBackend, DEBOUNCE_DELAY);
+
   },
 
   // 发送数据到后端
@@ -71,6 +64,13 @@ Page({
         this.setData({
           id: newId
         });
+        wx.showToast({
+          title: '保存成功！', // 提示的内容
+          icon: 'success', // 图标，支持 "success"、"loading" 等
+          duration: 2000, // 提示框显示时间，单位毫秒
+          mask: true, // 是否显示透明蒙层，防止触摸穿透
+        });
+
       },
       fail: (error) => {
         console.error(error);
@@ -91,14 +91,17 @@ Page({
     }
   },
   // 页面隐藏时触发
-  onHide() {
+  // onHide() {
+  //   this.sendDataToBackend();
+  // },
+  //保存
+  save() {
     this.sendDataToBackend();
   },
-
   // 页面卸载时触发
-  onUnload() {
-    this.sendDataToBackend();
-  },
+  // onUnload() {
+  //   this.sendDataToBackend();
+  // },
   // 获取笔记详情
   fetchNoteDetails(id) {
     const url = `${host}/user/notes/${id}`;
@@ -146,13 +149,16 @@ Page({
   publishContent() {
     const personalDetails = wx.getStorageSync("personalDetails") || {}; // 如果不存在则初始化为空对象
     const phoneNumber = personalDetails.phoneNumber || ''; // 从对象中获取 phoneNumber，如果不存在则为空字符串
-    const { title, content } = this.data; // 从页面数据中获取 title 和 content
-  
+    const {
+      title,
+      content
+    } = this.data; // 从页面数据中获取 title 和 content
+
     if (!title || !content) {
       console.error('发布内容时缺少必要的信息');
       return;
     }
-  
+
     wx.request({
       url: host + '/note/publishContent',
       method: 'POST',
@@ -164,6 +170,12 @@ Page({
       success: (res) => {
         console.log(res.data);
         // 处理成功的逻辑，根据需要修改
+        wx.showToast({
+          title: '发布成功！', // 提示的内容
+          icon: 'success', // 图标，支持 "success"、"loading" 等
+          duration: 2000, // 提示框显示时间，单位毫秒
+          mask: true, // 是否显示透明蒙层，防止触摸穿透
+        });
       },
       fail: (error) => {
         console.error(error);
@@ -174,4 +186,4 @@ Page({
 
 
 
-})  
+})
