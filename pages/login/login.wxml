@@ -5,11 +5,12 @@
   <view style="font-size: small;margin-top: 30rpx;">
     未注册手机登录后即可完成注册
   </view>
-<view style="display: flex;margin-top: 100rpx;align-items:center;">
+<view class="input" style="margin-top: 40rpx;">
 手机号：<input type="number" bindinput="phoneNumberInput" value="{{phoneNumber}}"/>
 </view>
-<view style="display: flex;justify-items: center;">
-密码：<input type="number" bindinput="passwordInput" value="{{passWord}}"/>
+<view class="input">
+验证码：<input type="number" bindinput="passwordInput" value="{{code}}"/>
 </view>
+<button bindtap="getCode" style="margin-top: 40rpx;">{{countdown}}</button>
 <button bindtap="login">登录</button>
 </view>

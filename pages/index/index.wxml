@@ -1,7 +1,33 @@
-<!--index.wxml-->
+<!-- 搜索 -->
 <view class="container">
   <view bind:tap="gosearch" class="search">
-    <input placeholder="{{weather.city}} {{weather.casts[0].dayweather}}/{{weather.casts[0].nightweather}}"disabled="true"/>
+    <input placeholder="搜索景点" disabled="true" />
+  </view>
+  <!-- 本地天气 -->
+  <view class="weather" wx:if="{{weatherData}}">
+    <view class="city">{{weatherData.city.data}}</view>
+    <view class="weather-info">
+      <view class="weather-item">
+        <text class="label">{{weatherData.weather.text}}</text>
+        <text class="data">{{weatherData.weather.data}}</text>
+      </view>
+      <view class="weather-item">
+        <text class="label">{{weatherData.temperature.text}}</text>
+        <text class="data">{{weatherData.temperature.data}}°C</text>
+      </view>
+      <view class="weather-item">
+        <text class="label">{{weatherData.winddirection.text}}</text>
+        <text class="data">{{weatherData.winddirection.data}}</text>
+      </view>
+      <view class="weather-item">
+        <text class="label">{{weatherData.windpower.text}}</text>
+        <text class="data">{{weatherData.windpower.data}}</text>
+      </view>
+      <view class="weather-item">
+        <text class="label">{{weatherData.humidity.text}}</text>
+        <text class="data">{{weatherData.humidity.data}}</text>
+      </view>
+    </view>
   </view>
   <!-- 推荐 -->
   <view style="font-weight: bold; padding: 2%;">
@@ -10,10 +36,9 @@
   <view class="tuiJian-container">
     <view class="tuiJian-overflow">
       <view wx:for="{{recommendList}}" wx:key="index" class="tuiJian-item" bind:tap="godetail" data-id="{{item.ScenicSpotID}}">
-        <image src="{{host}}/ScenicSpotImage/{{item.ScenicSpotImage}}" mode="aspectFill" alt="图片" />
+        <image src="{{host}}/ScenicSpotImage/{{item.ScenicSpotImage}}" mode="aspectFill" lazy-load="true" alt="图片" />
         <text>{{item.ScenicSpotName}}</text>
       </view>
-      <!-- <text>更多内容</text> -->
     </view>
   </view>
 
@@ -24,16 +49,12 @@
   <view class="reMen-list">
     <view wx:for="{{hotList}}" wx:key="index" class="reMen-item" bind:tap="godetail" data-id="{{item.ScenicSpotID}}">
       <view class="reMen-neiRong">
-        <image src="{{host}}/ScenicSpotImage/{{item.ScenicSpotImage}}" class="reMen-img" mode="aspectFill" alt="图片" />
-
+        <image src="{{host}}/ScenicSpotImage/{{item.ScenicSpotImage}}" class="reMen-img" mode="aspectFill" lazy-load="true" alt="图片" />
         <view class="reMenIntroduce">
           <view style="font-weight: bold;">{{item.ScenicSpotName}}</view>
           <text>{{item.ShortDescription}}</text>
         </view>
       </view>
-      <t-divider />
     </view>
   </view>
-
-
 </view>

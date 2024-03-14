@@ -1,0 +1,6 @@
+.input {
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc; /* 添加下边框，1像素宽，灰色 */
+}

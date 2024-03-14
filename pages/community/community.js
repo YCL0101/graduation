@@ -5,27 +5,30 @@ Page({
   data: {
     host: host,
     postList: [],
+    firstId:''
   },
 
   onLoad: function () {
     // 在页面加载时从后端获取论坛帖子
     this.fetchForumPosts();
-  },
 
+  },
+  onShow() {
+
+  },
   // 从后端获取论坛帖子数据
   fetchForumPosts: function () {
-    const that = this;
+    // const that = this;
 
     wx.request({
       url: host + '/api/getForumPosts',
       method: 'GET',
       success: (res) => {
         if (res.statusCode === 200) {
-          that.setData({
+          this.setData({
             postList: res.data.posts,
           });
-          console.log(that.data.postList);
-          that.userDataPost(); // 使用箭头函数以保持正确的上下文
+          this.userDataPost(); // 使用箭头函数以保持正确的上下文
         } else {
           console.error('获取论坛帖子数据失败。状态码:', res.statusCode);
         }
@@ -46,7 +49,7 @@ Page({
         wx.request({
           url: host + '/api/getUserInfo',
           data: {
-            phoneNumber: post.phoneNumber,
+            userId: post.userId,
           },
           success: (res) => {
             if (res.data.success) {
@@ -126,8 +129,24 @@ Page({
 
   like(e) {
     const id = e.currentTarget.dataset.id;
-    console.log(id);
-  
+    const personalDetails = wx.getStorageSync("personalDetails") || {}; // 如果不存在则初始化为空对象
+    const userId = personalDetails.id;
+    const firstId = this.data.firstId;
+
+    if(id==firstId){
+      wx.showToast({
+        title: '已点赞！',
+        icon:'none'
+      })
+      return;
+    }
+    if (!userId) {
+      wx.showToast({
+        title: '未登录！',
+        icon:'error'
+      })
+      return;
+    }
     wx.request({
       url: `${host}/api/likePost`,
       method: 'POST',
@@ -135,29 +154,16 @@ Page({
         id: id,
       },
       success: (res) => {
+
         if (res.statusCode === 200) {
-          // 获取更新后的点赞数
-          const updatedLikeCount = res.data.likeCount;
-  
-          // 更新当前帖子的点赞数和状态
-          const updatedPostList = this.data.postList.map(post => {
-            if (post.id === id) {
-              post.liked = true; // 如果后端返回点赞成功的标识，你可以使用后端的数据
-              post.likeCount = updatedLikeCount;
-            }
-            return post;
-          });
-  
-          // 更新到数据到页面
           this.setData({
-            postList: updatedPostList,
-          });
-  
-          // 弹出点赞成功提示
+            firstId:id
+          })
+          this.fetchForumPosts();
           wx.showToast({
-            title: '点赞成功',
-            icon: 'success',
-          });
+            title: '点赞成功！',
+            icon:'success'
+          })
         } else {
           console.error('点赞失败。状态码:', res.statusCode);
         }
@@ -166,8 +172,11 @@ Page({
         console.error('点赞请求失败:', error);
       },
     });
+
+
   },
-  
+
+
   // 下拉刷新事件处理函数
   onPullDownRefresh: function () {
     this.fetchForumPosts();

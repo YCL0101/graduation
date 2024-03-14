@@ -30,29 +30,43 @@ Page({
 
   // 发送数据到后端
   sendDataToBackend() {
-    const now = new Date();
-    const formattedTime = now.toLocaleString('zh-CN', {
-      hour12: false
-    });
-
+    
     const {
       id,
       title,
       content,
       issue
     } = this.data;
+  
     const storedUserInfo = wx.getStorageSync('personalDetails');
-    const phoneNumber = storedUserInfo?.phoneNumber;
-
+    const userId = storedUserInfo?.id;
+   if(!content||!title){
+     wx.showToast({
+       title: '标题或内容为空！',
+       icon:'none'
+     })
+      return;
+   }
+  
+    // const now = new Date();
+    // const formattedTime = now.toLocaleString('zh-CN', {
+    //   hour12: false
+    // });
+    const now = new Date();
+    const formattedTime = now.toISOString().slice(0, 19).replace('T', ' ');
+    
+    
+    console.log(formattedTime);
+    
     const dataToSend = {
       id,
-      phoneNumber,
+      userId,
       title,
       content,
       updateTime: formattedTime,
       issue
     };
-
+  
     wx.request({
       url: host + '/note/save',
       method: 'POST',
@@ -60,23 +74,23 @@ Page({
       success: (res) => {
         console.log(res.data)
         const newId = res.data?.insertedId;
-        // 更新id
+        // 更新笔记id
         this.setData({
           id: newId
         });
         wx.showToast({
-          title: '保存成功！', // 提示的内容
-          icon: 'success', // 图标，支持 "success"、"loading" 等
-          duration: 2000, // 提示框显示时间，单位毫秒
-          mask: true, // 是否显示透明蒙层，防止触摸穿透
+          title: '保存成功！',
+          icon: 'success',
+          duration: 2000,
+          mask: true,
         });
-
       },
       fail: (error) => {
         console.error(error);
       },
     });
   },
+  
 
   // 页面加载时
   onLoad(options) {
@@ -105,7 +119,6 @@ Page({
   // 获取笔记详情
   fetchNoteDetails(id) {
     const url = `${host}/user/notes/${id}`;
-
     wx.request({
       url,
       method: 'GET',
@@ -148,22 +161,25 @@ Page({
   // 发布
   publishContent() {
     const personalDetails = wx.getStorageSync("personalDetails") || {}; // 如果不存在则初始化为空对象
-    const phoneNumber = personalDetails.phoneNumber || ''; // 从对象中获取 phoneNumber，如果不存在则为空字符串
+    const userId = personalDetails.id || ''; 
     const {
       title,
       content
     } = this.data; // 从页面数据中获取 title 和 content
 
-    if (!title || !content) {
-      console.error('发布内容时缺少必要的信息');
-      return;
+    if(!content||!title){
+      wx.showToast({
+        title: '标题或内容为空！',
+        icon:'none'
+      })
+       return;
     }
 
     wx.request({
       url: host + '/note/publishContent',
       method: 'POST',
       data: {
-        phoneNumber,
+        userId,
         title,
         content
       },

@@ -5,20 +5,18 @@ Page({
     avatarUrl: '',
     userName: '',
     signature: '', // 个性签名
-    ifLogin:false,
-    host:host
+    host:host,
+    id:null
   },
   onShow() {
     const storedUserInfo = wx.getStorageSync("personalDetails");
-    if(storedUserInfo.userLogin){
-      // console.log(storedUserInfo)
+      console.log(storedUserInfo)
       this.setData({
-        ifLogin: storedUserInfo.userLogin,
+        id: storedUserInfo.id,
         userName: storedUserInfo.userName,
         signature: storedUserInfo.signature,
         avatarUrl:host + '/headPortrait/' +storedUserInfo.avatarUrl,
       })
-    }
   },
   goLogin() {
     wx.navigateTo({
@@ -27,10 +25,7 @@ Page({
   },
   goPersonalDetails() {
     const storedUserInfo = wx.getStorageSync("personalDetails");
-    this.setData({
-      ifLogin: storedUserInfo.userLogin,
-    });
-    if (storedUserInfo.userLogin) {
+    if (storedUserInfo.id) {
       wx.navigateTo({
         url: '/pages/personalDetails/personalDetails',
       })
@@ -45,7 +40,7 @@ Page({
   },
   logOut(){
     this.setData({
-      ifLogin: false,
+      id: null,
     });
    // 清除所有本地缓存
   wx.clearStorageSync();

@@ -5,8 +5,9 @@ Page({
     host: host,
     searchKeyword: '',
     historyList: [], // 搜索历史
-    searchResults: [], // 搜索结果
+    searchResults: [], // 帖子搜索结果
     hotKeywords: [], // 热门搜索关键词
+    scenic:[]//景区搜索结果
   },
   onInputChange: function (event) {
     // 获取输入框当前值
@@ -19,7 +20,7 @@ Page({
 
   },
   onLoad: function (options) {
-    
+
   },
   onShow() {
     // 加载本地搜索历史
@@ -62,23 +63,22 @@ Page({
       },
     });
   },
-// 请求热门
-goHotSearch() {
-  wx.request({
-    url: `${host}/api/hotSearch`,
-    method: 'GET',
-    success: (res) => {
-      console.log('Hot search data:', res.data);
-      this.setData({
-        hotKeywords: res.data.hotSearchData
-      })
-    },
-    fail: (error) => {
-      console.error('Request failed:', error);
-    }
-  });
-},
-
+  // 请求热门
+  goHotSearch() {
+    wx.request({
+      url: `${host}/api/hotSearch`,
+      method: 'GET',
+      success: (res) => {
+        console.log('Hot search data:', res.data);
+        this.setData({
+          hotKeywords: res.data.hotSearchData
+        })
+      },
+      fail: (error) => {
+        console.error('Request failed:', error);
+      }
+    });
+  },
   //搜索事件
   onSearch: function (e) {
     // console.log(e)
@@ -127,45 +127,47 @@ goHotSearch() {
         }
       });
 
-      //搜索请求
-      this.searchRequest({
-        keyword
-      })
+
     }
+    //搜索请求
+    this.searchRequest({
+      keyword
+    })
   },
   // 添加热门搜索词
   hotSearch(keyword) {
-    if(keyword){
-         wx.request({
-      url: `${host}/api/hotSearch`,
-      method: 'POST',
-      data: {
-        keyword: keyword
-      },
-      success: (res) => {
-        if (res.data.success) {
-          console.log("添加热门搜索词成功", res);
-          // 根据实际情况处理成功的逻辑
-        } else {
-          console.error("添加热门搜索词失败", res.data.error);
-          // 根据实际情况处理失败的逻辑
+    if (keyword) {
+      wx.request({
+        url: `${host}/api/hotSearch`,
+        method: 'POST',
+        data: {
+          keyword: keyword
+        },
+        success: (res) => {
+          if (res.data.success) {
+            console.log("添加热门搜索词成功", res);
+            // 根据实际情况处理成功的逻辑
+          } else {
+            console.error("添加热门搜索词失败", res.data.error);
+            // 根据实际情况处理失败的逻辑
+          }
+        },
+        fail: (error) => {
+          console.error("添加热门搜索词请求失败", error);
+          // 根据实际情况处理请求失败的逻辑
         }
-      },
-      fail: (error) => {
-        console.error("添加热门搜索词请求失败", error);
-        // 根据实际情况处理请求失败的逻辑
-      }
-    });
+      });
     }
- 
+
   },
 
   // 请求搜索结果
   searchRequest(e) {
-    // console.log(e)
+    console.log(e)
     const keyword = e.keyword
     wx.request({
       url: host + "/api/searchRequest",
+      method: 'GET',
       data: {
         keyword
       },
@@ -174,11 +176,20 @@ goHotSearch() {
         if (res.statusCode === 200) {
           // 处理从 'res.data' 变量中获取的搜索结果
           console.log(res.data.searchResults);
+          console.log(res.data.searchResults.scenic[0]);
           this.setData({
-            searchResults: res.data.searchResults,
+            searchResults: res.data.searchResults.post,//帖子
+            scenic:res.data.searchResults.scenic[0]//景区
           });
           this.userDataPost();
         } else {
+          wx.showToast({
+            title: '不存在！',
+            icon: 'none',
+            duration: 2000
+          })
+
+
           // 处理意外的状态码
           console.error('意外的状态码:', res.statusCode);
         }
@@ -239,14 +250,13 @@ goHotSearch() {
   // 从后端获取用户数据
   userDataPost() {
     const searchResults = this.data.searchResults;
-
     // 使用 map 创建新的数组，避免直接修改原始数据
     const promises = searchResults.map(post => {
       return new Promise((resolve, reject) => {
         wx.request({
           url: host + '/api/getUserInfo',
           data: {
-            phoneNumber: post.phoneNumber,
+            userId: post.userId,
           },
           success: (res) => {
             if (res.data.success) {
@@ -298,5 +308,11 @@ goHotSearch() {
     wx.navigateTo({
       url: '/pages/communityDetails/communityDetails?id=' + id + '&userName=' + userName + '&avatarUrl=' + avatarUrl,
     });
-  }
+  },
+  goScenic(e) {
+    var ScenicSpotID = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: `/pages/detail/detail?id=${ScenicSpotID}`,
+    });
+  },
 });

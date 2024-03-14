@@ -1,5 +1,5 @@
 <view>
-  <view wx:if="{{ifLogin}}" class="login">
+  <view wx:if="{{id}}" class="login">
     <image class="avatar-example" src="{{avatarUrl}}" />
     <view style="font-size: large;">
       {{userName}}

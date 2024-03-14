@@ -1,6 +1,6 @@
-<view class="diary-list">
+<view wx:if="{{id>-1}}" class="diary-list">
   <block wx:for="{{diaries}}" wx:key="index">
-    <swiper class="swiper" current="{{currentSwiper}}" >
+    <swiper class="swiper" current="{{currentSwiper}}">
       <swiper-item class="swiper-item">
         <view class="diary-item" bind:tap="goToDetail" data-id="{{item.id}}">
           <text class="diary-title">{{item.title}}</text>
@@ -13,7 +13,10 @@
       </swiper-item>
     </swiper>
   </block>
+  <view class="float-button" bindtap="goToDetail">
+    <text class="plus-sign">+</text>
+  </view>
 </view>
-<view class="float-button" bindtap="goToDetail">
-  <text class="plus-sign">+</text>
+<view wx:else>
+  <view class="login-prompt">请先登录</view>
 </view>

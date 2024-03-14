@@ -19,7 +19,8 @@ Page({
   // 选择头像的回调函数
   onChooseAvatar: function (e) {
     const personalDetails = wx.getStorageSync("personalDetails") || []; // 获取缓存数组，如果不存在则初始化为空数组
-    const phoneNumber = personalDetails.phoneNumber;
+    console.log(personalDetails)
+    const id = personalDetails.id;
     // 获取选择的头像临时路径
     const {
       avatarUrl
@@ -31,7 +32,7 @@ Page({
       filePath: avatarUrl,
       name: 'avatar',
       formData: {
-        phoneNumber: phoneNumber
+        id: id
       },
       header: {
         'Content-Type': 'multipart/form-data' // 设置正确的 Content-Type
@@ -112,10 +113,10 @@ Page({
   // 保存用户信息到后端
   saveUserInfo: function () {
     // 获取当前页面的个人信息
-    const personalDetails = wx.getStorageSync("personalDetails") || []; // 获取缓存数组，如果不存在则初始化为空数组
-    const phoneNumber = personalDetails.phoneNumber;
+    const personalDetails = wx.getStorageSync("personalDetails"); // 获取缓存数组，如果不存在则初始化为空数组
+    const id = personalDetails.id;
     const userInfo = {
-      phoneNumber: phoneNumber,
+      id: id,
       userName: this.data.userName,
       signature: this.data.signature,
       interests: this.data.interests,

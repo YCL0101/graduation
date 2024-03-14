@@ -1,6 +1,7 @@
 {
   "usingComponents": {
- 
   },
-  "navigationBarTitleText": "主页"
+  "navigationBarTitleText": "景点",
+  "enablePullDownRefresh": true,
+  "onPullDownRefresh": "onPullDownRefresh"
 }

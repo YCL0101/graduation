@@ -1,0 +1,16 @@
+/* 样式表中添加 */
+.instructions-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10rpx; /* 适当的内边距 */
+}
+
+.instruction-item {
+  border-bottom: 1rpx solid #ddd; /* 添加底部边框 */
+  padding: 10rpx; /* 适当的内边距 */
+  /* 其他样式属性，根据需要添加 */
+}
+
+.instruction-item:last-child {
+  border-bottom: none; /* 去掉最后一个元素的底部边框 */
+}

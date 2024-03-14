@@ -117,3 +117,9 @@
   line-height: 2;
   /* 行高是字体大小的两倍，文本在行框中垂直居中。 */
 }
+.login-prompt {
+  text-align: center;
+  font-size: 16px;
+  color: #999;
+  margin-top: 20px;
+}

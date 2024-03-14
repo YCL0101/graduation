@@ -63,7 +63,7 @@ Page({
               commentGroup: res.data.postInfo.comment
             });
             console.log(res.data.postInfo.comment)
-            console.log(res.data.postInfo.comment[0].children)
+            // console.log(res.data.postInfo.comment[0].children)
           }
 
 
@@ -73,7 +73,7 @@ Page({
             postInfo: res.data.postInfo, // 假设接口返回的数据包含在 post 字段中
             // commentGroup: commentGroup
           });
-          // console.log(res.data.postInfo.comment)
+          console.log(res.data.postInfo)
         } else {
           console.error('请求帖子数据失败。状态码:', res.statusCode);
         }
@@ -84,6 +84,20 @@ Page({
     });
   },
 
+  // 回复评论
+  handleMainCommentTap(event) {
+    const userName = event.currentTarget.dataset.userName;
+    console.log(userName)
+    // 设置被点击的用户名和默认文本
+    this.setData({
+      commentText: `回复 ${userName}: `,
+    });
+    // 滚动到输入框位置
+    wx.pageScrollTo({
+      selector: '#input',
+      duration: 300,
+    });
+  },
   // 输入框内容变化时触发
   bindInputComment(e) {
     this.setData({
@@ -93,11 +107,35 @@ Page({
 
   // 点击发布按钮时触发
   publishComment() {
-    const postId = this.data.id; // 示例中将postId设置为2，您可以根据实际情况设置
-    const floor = null;
+    // 获取用户存储的个人信息
+    const storedUserInfo = wx.getStorageSync("personalDetails");
+
+    // 如果用户信息中不存在id，提示用户登录或获取id
+    if (!storedUserInfo || !storedUserInfo.id) {
+      wx.showToast({
+        title: '请先登录!',
+        icon: 'none',
+        duration: 2000
+      });
+      return;
+    }
+
+    // 获取帖子id
+    const postId = this.data.id;
+
+    // 获取评论文本
     const commentText = this.data.commentText;
+    if (!commentText) {
+      wx.showToast({
+        title: '评论不得为空！',
+        icon: 'none',
+        duration: 2000
+      });
+      return;
+    }
+    // 获取评论组
     const commentGroup = this.data.commentGroup;
-    //time
+
     // 获取当前时间
     const currentDateTime = new Date();
 
@@ -117,43 +155,25 @@ Page({
     function addZero(number) {
       return number < 10 ? `0${number}` : number;
     }
-    const storedUserInfo = wx.getStorageSync("personalDetails");
-    // 查找是否存在对应 floor 的评论
-    const existingFloorIndex = commentGroup.findIndex(comment => !(floor === null) || (comment && comment.floor === floor));
 
-console.log(existingFloorIndex)
-    if (existingFloorIndex !== -1) {
-      // 如果存在对应 floor 的评论，直接在该评论的 children 数组中添加新的一级评论
-      const existingComment = commentGroup[existingFloorIndex];
-      if (existingComment) {
-        existingComment.children.push({
-          id: storedUserInfo.id,
-          userName: storedUserInfo.userName,
-          avatarUrl: storedUserInfo.avatarUrl,
-          time: formattedDateTime,
-          content: commentText,
-        });
-      }
-    } else {
-      // 如果不存在对应 floor 的评论，自动赋予一个新的 floor 值
-      const newFloor = commentGroup.length + 1;
+    // 自动赋予一个新的 floor 值
+    const newFloor = commentGroup.length + 1;
 
-      // 新增一个评论，并在其 children 数组中添加新的一级评论
-      commentGroup.push({
-        postId: postId,
-        floor: newFloor,
-        id: storedUserInfo.id,
-        userName: storedUserInfo.userName,
-        avatarUrl: storedUserInfo.avatarUrl,
-        time: formattedDateTime,
-        content: commentText,
-        children: [], // 第二级评论数组
-      });
-    }
-
-
+    // 新增一个评论，并在其 children 数组中添加新的一级评论
+    commentGroup.push({
+      postId: postId,
+      floor: newFloor,
+      id: storedUserInfo.id,
+      userName: storedUserInfo.userName,
+      avatarUrl: storedUserInfo.avatarUrl,
+      time: formattedDateTime,
+      content: commentText,
+      children: [], // 第二级评论数组
+    });
 
     console.log(commentGroup);
+
+    // 更新评论组
     this.setData({
       commentGroup
     });
@@ -167,10 +187,11 @@ console.log(existingFloorIndex)
     });
   },
 
+
   // 通过postId发送commentGroup到后端
   postComment(postId, commentGroup) {
     // 使用小程序的wx.request发送请求
-    console.log('postId'+postId)
+    console.log('postId' + postId)
     wx.request({
       url: host + '/api/postComment',
       method: 'POST',
@@ -180,8 +201,13 @@ console.log(existingFloorIndex)
       },
       success: function (res) {
         console.log('评论成功', res.data);
-    
-        // 在这里可以处理后端返回的数据
+        wx.showToast({
+          title: '评论成功!', // 提示的内容
+          icon: 'success', // 图标，支持 "success"、"loading" 等
+          duration: 2000, // 提示框显示时间，单位毫秒
+          mask: true, // 是否显示透明蒙层，防止触摸穿透
+        });
+
       },
       fail: function (err) {
         console.error('评论失败', err);

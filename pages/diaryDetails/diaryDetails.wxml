@@ -7,8 +7,6 @@
   </view>
 </view>
 <view class="upload-container">
-  <!-- <image bindtap="chooseImage" src="/pages/image/图片.png" /> -->
-  <!-- <image bindtap="chooseVideo" src="/pages/image/视频.png" /> -->
-  <image bindtap="save" src="/pages/image/保存.png" />
-  <image bindtap="publishContent" src="/pages/image/发布.png" />
+  <button style="line-height: 2;" bindtap="save">保存</button>
+  <button style="line-height: 2;" bindtap="publishContent" >发布</button>
 </view>

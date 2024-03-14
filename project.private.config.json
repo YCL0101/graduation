@@ -10,6 +10,27 @@
         "miniprogram": {
             "list": [
                 {
+                    "name": "pages/repast/repast",
+                    "pathName": "pages/index/index",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "pages/path/path",
+                    "pathName": "pages/path/path",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "pages/weather/weather",
+                    "pathName": "pages/weather/weather",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
                     "name": "pages/communityDetails/communityDetails",
                     "pathName": "pages/communityDetails/communityDetails",
                     "query": "",

@@ -4,13 +4,22 @@
     <input placeholder="请输入关键词" value="{{searchKeyword}}" bindblur="onSearch" bindinput="onInputChange" maxlength="10" />
   </view>
   <view wx:if="{{searchKeyword!==''&&searchResults.length>0}}">
-      <!-- 搜索结果 -->
-      <view class="post" wx:for="{{searchResults}}" wx:key="index" data-id="{{item.id}}" data-username="{{item.userName}}" data-avatarurl="{{item.avatarUrl}}" bind:tap="goDetails">
+    <!-- 搜索结果 -->
+    <!-- 景点 -->
+    <view class="scenic" wx:if="{{scenic}}" bind:tap="goScenic" data-id="{{scenic.ScenicSpotID}}">
+      <image src="{{host}}/ScenicSpotImage/{{scenic.ScenicSpotImage}}" mode="aspectFill" lazy-load="true" alt="图片" />
+      <view class="scenic_i">
+        <view style="font-weight: bold;">{{scenic.ScenicSpotName}}</view>
+        <text>{{scenic.ShortDescription}}</text>
+      </view>
+    </view>
+    <!-- 笔记 -->
+    <view class="post" wx:for="{{searchResults}}" wx:key="index" data-id="{{item.id}}" data-username="{{item.userName}}" data-avatarurl="{{item.avatarUrl}}" bind:tap="goDetails">
       <view class="post-info">
         <image class="avatar" src="{{host}}/headPortrait/{{item.avatarUrl}}"></image>
         <view class="info-text">
           <text class="nickname">{{item.userName}}</text>
-          <text class="post-time">{{item.publishTime}}</text>
+          <text class="post-time">{{item.formattedPublishTime}}</text>
         </view>
       </view>
       <view class="post-content">

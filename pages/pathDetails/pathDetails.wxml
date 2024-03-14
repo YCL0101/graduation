@@ -1,0 +1,5 @@
+<view class="instructions-container">
+  <view wx:for="{{pathDetails}}" wx:key="index" class="instruction-item">
+    {{item.instruction}}
+  </view>
+</view>

@@ -19,10 +19,10 @@
     <input type="text" maxlength="30" value="{{signature}}" bindinput="onInputSignature" />
   </view>
 
-  <!-- 兴趣标签输入框 -->
+  <!-- 兴趣输入框 -->
   <view style="width: 100%; height: 5rpx; color: rgba(255, 255, 255, 0);"></view>
   <view class="box">
-    <text class="flex-item">兴趣标签</text>
+    <text class="flex-item">兴趣</text>
     <input type="text" maxlength="10" value="{{interests}}" bindinput="onInputInterests" />
   </view>
 

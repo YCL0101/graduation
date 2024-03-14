@@ -2,27 +2,45 @@
 // 获取应用实例
 const app = getApp()
 const host = app.globalData.host;
-const key = '50a03a505039735d0e6c3bdf79edf32f';
+// const key = '50a03a505039735d0e6c3bdf79edf32f';
+var amapFile = require('../libs/amap-wx.130.js');
+
 Page({
   data: {
+    weatherData: {}, // 获取的天气信息对象
     recommendList: [],
     hotList: [],
     host: host,
     historyList: [], // 搜索历史
-    weather: [],
   },
   // 事件处理函数
   onLoad() {
     console.log('页面加载了')
-    // this.recommendList();
+    // 天气
+    var that = this;
+    var myAmapFun = new amapFile.AMapWX({
+      key: 'fa30e15f69cf95ac691c8d704cc40b73'//高德小程序key
+    });
+    myAmapFun.getWeather({
+      success: function (data) {
+        console.log(data);
+        that.setData({
+          weatherData: data
+        });
+      },
+      fail: function (info) {
+        that.setData({
+          weatherData: null
+        });
+        console.log(info);
+      }
+    });
+    this.recommendList();
     this.hotList();
 
   },
   onShow() {
-    this.recommendList();
-    this.getUserLocation();
-    //示例
-    // this.weather()
+
   },
   //景区
   hotList() {
@@ -47,7 +65,7 @@ Page({
     })
   },
 
-  gosearch: function () {
+  gosearch() {
     wx.navigateTo({
       url: '/pages/search/search',
     })
@@ -59,82 +77,60 @@ Page({
     });
   },
 
-//推荐
+  //景区推荐
   recommendList() {
     const interestBias = wx.getStorageSync('interestBias');
-    const sortedInterest = Object.keys(interestBias).sort((a, b) => interestBias[b] - interestBias[a]);
-    const keyWord = sortedInterest.slice(0, 1).toString();
-
-  // console.log(keyWord)
-    wx.request({
-      url: host + '/api/recommend',
-      method: 'GET',
-      data: {
-        interestBias: keyWord
-      },
-      success: (res) => {
-        const recommendList = res.data;
-        // 将重新排序后的数据赋值给 recommendList 数组
-        this.setData({
-          recommendList: recommendList,
-        });
-      },
-      fail: function (error) {
-        console.error(error);
-      }
-    });
-  },
-  
-  // 获取用户的定位信息
-  getUserLocation() {
-    wx.getLocation({
-      type: 'wgs84',
-      success: (res) => { // 使用箭头函数
-        // 获取用户经纬度
-        const latitude = res.latitude;
-        const longitude = res.longitude;
-
-        // 调用逆地理编码的服务，获取城市信息
+    console.log("景区推荐")
+    console.log(interestBias)
+    if (interestBias) {
+      const sortedInterest = Object.keys(interestBias).sort((a, b) => interestBias[b] - interestBias[a]);
+      const keyWord = sortedInterest.slice(0, 1).toString();
+      wx.request({
+        url: host + '/api/recommend',
+        method: 'GET',
+        data: {
+          interestBias: keyWord
+        },
+        success: (res) => {
+          const recommendList = res.data;
+          console.log()
+          // 将重新排序后的数据赋值给 recommendList 数组
+          this.setData({
+            recommendList: recommendList,
+          });
+        },
+        fail: function (error) {
+          console.error(error);
+        }
+      });
+    } else {
         wx.request({
-          url: `https://restapi.amap.com/v3/geocode/regeo?key=${key}&location=${longitude},${latitude}`,
-          method: 'GET',
-          success: (result) => { // 使用箭头函数
-            const cityCode = result.data.regeocode.addressComponent.adcode;
-            console.log('用户所在城市编码：', cityCode);
-
-            // 获取城市编码后调用天气查询函数
-            this.weather(cityCode);
+          url: host + '/api/hot', 
+          method: 'GET', 
+          header: {
+            'content-type': 'application/json' 
           },
-          fail: (error) => { // 使用箭头函数
-            console.error('获取城市信息失败', error);
+          success: (res) => {
+            this.setData({
+              recommendList : res.data
+            });
+          },
+          fail: function (error) {
+            console.error(error);
           }
-        });
-      },
-      fail: (error) => { // 使用箭头函数
-        console.error('获取定位信息失败', error);
-      }
-    });
+        })
+    }
+
   },
 
-  // 天气查询函数
-  weather(cityCode) {
-    // const cityCode = '410221';
-    // 调用高德地图的天气查询 API
-    wx.request({
-      url: `https://restapi.amap.com/v3/weather/weatherInfo?key=${key}&city=${cityCode}&extensions=all`,
-      method: 'GET',
-      success: (result) => { // 使用箭头函数
-        console.log(result.data.forecasts[0]);
-        this.setData({
-          weather: result.data.forecasts[0]
-        })
-        // 在这里处理天气信息，更新你的小程序界面
-      },
-      fail: (error) => { // 使用箭头函数
-        console.error('获取天气信息失败', error);
-      }
-    });
-  }
+  // 下拉刷新事件处理函数
+  onPullDownRefresh: function () {
+
+    this.hotList();
+    this.recommendList();
+    // 完成下拉刷新后，调用 wx.stopPullDownRefresh() 来停止刷新动画
+    wx.stopPullDownRefresh();
+  },
 
 
 

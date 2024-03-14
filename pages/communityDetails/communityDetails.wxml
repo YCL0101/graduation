@@ -3,7 +3,7 @@
     <image class="avatar" src="{{host}}/headPortrait/{{avatarUrl}}"></image>
     <view class="info-text">
       <text class="nickname">{{userName}}</text>
-      <text class="post-time">{{postInfo.publishTime}}</text>
+      <text class="post-time">{{postInfo.formattedPublishTime}}</text>
     </view>
   </view>
   <view class="post-content">
@@ -14,7 +14,7 @@
   <view style="margin-top: 2%; padding-bottom: 60px;" >
   <!-- 主评论 -->
   <view wx:for="{{commentGroup}}" wx:key="index">
-    <view class="comment-info">
+  <view class="comment-info" bind:tap="handleMainCommentTap" data-user-name="{{item.userName}}">
       <image class="avatar" src="{{host}}/headPortrait/{{item.avatarUrl}}"></image>
       <view class="info-text">
         <text class="nickname">{{item.userName}}</text>
@@ -23,22 +23,9 @@
     </view>
     <view class="one-content">{{item.content}}</view>
   </view>
-  <!-- 子评论 -->
-  <view wx:if="{{item.children && item.children.length > 0}}" wx:for="{{item.children}}"wx:for-index="0" wx:key="index">
-    <view class="comment-info">
-      <image class="avatar" src="{{host}}/headPortrait/{{childItem.avatarUrl}}"></image>
-      <view class="info-text">
-        <text class="nickname">{{childItem.userName}}</text>
-        <text class="post-time">{{childItem.time}}</text>
-      </view>
-      <view>{{childItem.content}}</view>
-    </view>
-  </view>
 </view>
-
-
   <view class="comment">
-    <input placeholder="输入评论内容" bindinput="bindInputComment" value="{{commentText}}"></input>
+    <input id='input' placeholder="输入评论内容" bindinput="bindInputComment" value="{{commentText}}"></input>
     <button bindtap="publishComment">发布</button>
   </view>
 </view>

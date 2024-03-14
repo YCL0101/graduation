@@ -1,12 +1,61 @@
+.weather {
+  font-size: 15px;
+  padding: 20rpx;
+  /* 设置页面边距，rpx是适配不同屏幕的单位 */
+  border-radius: 20rpx;
+  /* box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); */
+}
+
+.city {
+  font-size: 24rpx;
+  /* 设置城市字体大小 */
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  /* 设置城市底部边距 */
+}
+
+.weather-info {
+  background-color: #f5f5f5;
+  /* 设置天气信息区域背景色 */
+  padding: 15rpx;
+  /* 设置天气信息区域内边距 */
+  border-radius: 10rpx;
+  /* 设置天气信息区域圆角 */
+}
+
+.weather-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #ddd;
+  /* 设置每个天气信息项的底部边框 */
+  padding: 10rpx 0;
+  /* 设置每个天气信息项的内边距 */
+}
+
+.label {
+  color: #333;
+  /* 设置标签文字颜色 */
+}
+
+.data {
+  color: #666;
+  /* 设置数据文字颜色 */
+  font-weight: bold;
+}
+
 .search {
   height: 60rpx;
   margin-top: 4rpx;
   background-color: #eeeeee;
   border: 8rpx solid rgba(0, 0, 0, 0);
   border-radius: 10rpx;
-  display: flex; /* 使用 Flex 布局 */
-  justify-content: center; /* 在水平方向上居中 */
-  align-items: center; /* 在垂直方向上居中 */
+  display: flex;
+  /* 使用 Flex 布局 */
+  justify-content: center;
+  /* 在水平方向上居中 */
+  align-items: center;
+  /* 在垂直方向上居中 */
 }
 
 .search input {
@@ -28,7 +77,7 @@
   padding: 16rpx;
   display: flex;
   /* 使用 Flexbox 布局 */
-  justify-content: space-between;
+  /* justify-content: space-between; */
   overflow-x: auto;
   padding-bottom: 20rpx;
 }
@@ -76,7 +125,7 @@
   border-radius: 20rpx;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
   /* 添加阴影效果 */
-  
+
 }
 
 .reMenIntroduce {
