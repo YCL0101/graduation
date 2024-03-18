@@ -1,0 +1,20 @@
+.item-container {
+  display: flex;
+  align-items: center; /* 垂直居中对齐 */
+  padding: 20rpx;
+  box-shadow: 2rpx 2rpx 2rpx 2rpx rgba(0, 0, 0, 0.1); /* 添加阴影边框 */
+}
+
+.item-image {
+  width: 300rpx; /* 设置图片宽度 */
+  height: calc(300rpx / 1.618); /* 根据黄金比例计算高度 */
+  margin-right: 10px; /* 图片与介绍之间的间距 */
+  border-radius: 10px; /* 添加圆角 */
+}
+.item-info {
+  flex: 1; /* 剩余空间全部占满 */
+}
+
+.item-info > view {
+  margin-bottom: 5px; /* 介绍元素之间的间距 */
+}

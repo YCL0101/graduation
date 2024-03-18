@@ -20,7 +20,10 @@ Page({
     cost: '',
     polyline: [], //用于在地图上绘制驾车路线
     pathDetails: [], //路线详情
-    location: '' //终点经纬度
+    location: '', //终点经纬度
+    lat:'',
+    lng:'',
+    endAddress:''
   },
   onLoad: function (e) {
     //获取用户经纬度
@@ -30,13 +33,13 @@ Page({
         const latitude = res.latitude;
         const longitude = res.longitude;
         const origin = longitude + ',' + latitude;
-    
+
         // 更新markers数组的第一个元素
         this.setData({
           'markers[0].longitude': longitude,
           'markers[0].latitude': latitude
         });
-    
+
         // 执行getPath函数
         this.getPath(origin);
       },
@@ -49,15 +52,18 @@ Page({
     this.setData({
       location: e.location,
       'markers[1].longitude': parseFloat(longitude),
-      'markers[1].latitude': parseFloat(latitude)
+      'markers[1].latitude': parseFloat(latitude),
+      lat:parseFloat(latitude),
+      lng:parseFloat(longitude),
+      endAddress:e.endAddress
     });
   },
-  
+
   //请求高德数据
   getPath(origin) {
     const location = this.data.location;
-    console.log("origin"+origin);
-    console.log("location"+location);
+    console.log("origin" + origin);
+    console.log("location" + location);
     var that = this;
     // var key = config.Config.key;
     var myAmapFun = new amapFile.AMapWX({
@@ -91,7 +97,7 @@ Page({
         });
         if (data.paths[0] && data.paths[0].distance) {
           that.setData({
-            distance: data.paths[0].distance/1000
+            distance: data.paths[0].distance / 1000
           });
         }
         if (data.taxi_cost) {
@@ -111,6 +117,25 @@ Page({
     wx.navigateTo({
       url: '../pathDetails/pathDetails?pathDetails=' + JSON.stringify(pathDetails),
     });
+  },
+  get_button() {
+   
+    let endPoint = JSON.stringify({ //终点
+      'name': this.data.endAddress,
+      'location': {
+        'lat': this.data.lat,
+        'lng': this.data.lng
+      }
+    })
+    console.log(endPoint)
+    wx.navigateToMiniProgram({
+      appId: 'wx7643d5f831302ab0',
+      path: 'pages/multiScheme/multiScheme?endLoc=' + endPoint,
+      envVersion: 'release',
+      success(res) {
+        console.log(res)
+      }
+    })
   }
 
 

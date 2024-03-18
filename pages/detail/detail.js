@@ -130,8 +130,9 @@ Page({
   //路线规划
   goPath() {
     const location = this.data.location;
+    const endAddress = this.data.detailList.ScenicSpotName;
     wx.navigateTo({
-      url: '../path/path?location=' + location,
+      url: '../path/path?location=' + location+'&endAddress='+endAddress,
     })
   },
   //虚拟漫游
@@ -149,10 +150,4 @@ Page({
       url: '../ai/ai',
     })
   },
-//周边餐饮
-rimService(){
-wx.navigateTo({
-  url: '../rimService/rimService',
-})
-},
 })

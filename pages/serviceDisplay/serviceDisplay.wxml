@@ -1,0 +1,12 @@
+<view wx:for="{{poisData}}" wx:key="id">
+  <view class="item-container">
+    <!-- 图片 -->
+    <image class="item-image" src="https://fakeimg.pl/300x185/F3F3F3?text={{keyword}}<:rooThink:596576798351949847>&font=noto" mode="aspectFill" />
+    <!-- 介绍 -->
+    <view class="item-info">
+      <view style="font-weight: bold;">{{item.name}}</view>
+      <view style="font-size:25rpx;">类型：{{item.type}}</view>
+      <view style="font-size:25rpx;">地址：{{item.address}}</view>
+    </view>
+  </view>
+</view>

@@ -1,3 +1,24 @@
+
+.top_serve {
+  display: flex;
+  justify-content: space-between;
+  font-size: 40rpx;
+}
+.selected {
+  color: rgba(83, 214, 231, 0.753); /* 设置点击态的文字颜色为红色 */
+  /* font-weight: bold; 设置点击态的文字加粗 */
+}
+
+
+
+.top_serve view {
+  width: 50%;
+  text-align: center;
+  padding-top: 20rpx;
+}
+.swiper{
+  height:400rpx ;
+}
 .weather {
   font-size: 15px;
   padding: 20rpx;
@@ -32,6 +53,29 @@
   padding: 10rpx 0;
   /* 设置每个天气信息项的内边距 */
 }
+.service {
+  display: flex;
+  flex-direction: row;
+  padding-top: 40rpx;
+}
+
+.route {
+  flex: 1;
+  /* text-align: center; */
+  display: flex;
+  flex-direction: column; /* 设置为垂直方向排列 */
+  align-items: center; /* 垂直居中 */
+}
+
+.icon {
+  width: 30px;
+  height:30px;
+}
+
+.title {
+  margin-top: 10px;
+  font-size: 20rpx;
+}
 
 .label {
   color: #333;
@@ -47,8 +91,8 @@
 .search {
   height: 60rpx;
   margin-top: 4rpx;
-  background-color: #eeeeee;
-  border: 8rpx solid rgba(0, 0, 0, 0);
+  /* background-color: #eeeeee; */
+  border: 1rpx solid rgba(0, 0, 0, 0.575);
   border-radius: 10rpx;
   display: flex;
   /* 使用 Flex 布局 */
@@ -59,6 +103,7 @@
 }
 
 .search input {
+  color:black;
   align-items: center;
   text-align: center;
 }
@@ -84,7 +129,8 @@
 
 .tuiJian-item {
   /* background-color: #45b614; */
-  width: 250rpx;
+  width: 300rpx; /* 设置图片宽度 */
+  height: calc(300rpx / 1.618); /* 根据黄金比例计算高度 */
   display: flex;
   flex-direction: column;
   padding-right: 20rpx;
@@ -120,8 +166,8 @@
 }
 
 .reMen-neiRong image {
-  width: 50%;
-  height: 100px;
+  width: 350rpx; /* 设置图片宽度 */
+  height: calc(350rpx / 1.618); /* 根据黄金比例计算高度 */
   border-radius: 20rpx;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
   /* 添加阴影效果 */

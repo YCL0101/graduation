@@ -12,5 +12,6 @@
 <view class="text_box">
   <view class="text">{{distance}} km</view>
   <view class="text">{{cost}}</view>
+    <view class="get_button" bind:tap="get_button">导航</view>
   <view class="detail_button" bindtouchstart="goDetail">详情</view>
 </view>

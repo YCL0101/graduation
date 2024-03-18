@@ -47,4 +47,14 @@
   text-align:center;
   border-radius:5px;
 }
-
+.get_button{
+  position:absolute;
+  bottom: 30px;
+  right: 80px;
+  padding: 3px 5px;
+  color: #fff;
+  background: #0091ff;
+  width:50px;
+  text-align:center;
+  border-radius:5px;
+}

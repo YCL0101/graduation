@@ -1,5 +1,3 @@
-<!-- pages/detail/detail.wxml -->
-
 <view class="detailBox">
   <!-- 图片 -->
   <image src="{{host}}/ScenicSpotImage/{{detailList.ScenicSpotImage}}" mode="aspectFill" alt="图片" />
@@ -31,24 +29,21 @@
   </view>
   <!-- 功能区 -->
   <view class="title">功能区</view>
-  <view class="container">
-  <view bind:tap="goPath" class="route">
-    <image src="../image/查询路线.png" alt="" class="icon"/>
+<view class="container">
+  <view bindtap="goPath" class="route">
+    <image src="../image/查询路线.png" alt="" class="icon" />
     <text class="title">路线规划</text>
   </view>
-  <view bind:tap="goRoam" class="route" data-roamUrl="{{detailList.roamUrl}}">
-    <image src="../image/虚拟漫游.png" alt="" class="icon"/>
+  <view bindtap="goRoam" class="route" data-roamUrl="{{detailList.roamUrl}}">
+    <image src="../image/虚拟漫游.png" alt="" class="icon" />
     <text class="title">虚拟漫游</text>
   </view>
-  <view bind:tap="goAI" class="route">
-    <image src="../image/AI问答.png" alt="" class="icon"/>
+  <view bindtap="goAI" class="route">
+    <image src="../image/AI问答.png" alt="" class="icon" />
     <text class="title">AI问答</text>
   </view>
-  <view bind:tap="rimService" class="route">
-    <image src="../image/景区-周边服务.png" alt="" class="icon"/>
-    <text class="title">周边服务</text>
-  </view>
 </view>
+
 
 
 

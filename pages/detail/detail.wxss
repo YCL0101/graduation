@@ -50,21 +50,24 @@ image{
 .container {
   display: flex;
   flex-direction: row;
+  padding-top: 40rpx;
 }
-
 .route {
   flex: 1;
-  text-align: center;
+  /* text-align: center; */
+  display: flex;
+  flex-direction: column; /* 设置为垂直方向排列 */
+  align-items: center; /* 垂直居中 */
 }
 
 .icon {
-  width: 60px;
-  height: 60px;
+  width: 30px;
+  height:30px;
 }
 
 .title {
   margin-top: 10px;
+  font-size: 20rpx;
 }
-
 
 

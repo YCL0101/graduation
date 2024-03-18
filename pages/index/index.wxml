@@ -3,32 +3,65 @@
   <view bind:tap="gosearch" class="search">
     <input placeholder="搜索景点" disabled="true" />
   </view>
-  <!-- 本地天气 -->
-  <view class="weather" wx:if="{{weatherData}}">
-    <view class="city">{{weatherData.city.data}}</view>
-    <view class="weather-info">
-      <view class="weather-item">
-        <text class="label">{{weatherData.weather.text}}</text>
-        <text class="data">{{weatherData.weather.data}}</text>
-      </view>
-      <view class="weather-item">
-        <text class="label">{{weatherData.temperature.text}}</text>
-        <text class="data">{{weatherData.temperature.data}}°C</text>
-      </view>
-      <view class="weather-item">
-        <text class="label">{{weatherData.winddirection.text}}</text>
-        <text class="data">{{weatherData.winddirection.data}}</text>
-      </view>
-      <view class="weather-item">
-        <text class="label">{{weatherData.windpower.text}}</text>
-        <text class="data">{{weatherData.windpower.data}}</text>
-      </view>
-      <view class="weather-item">
-        <text class="label">{{weatherData.humidity.text}}</text>
-        <text class="data">{{weatherData.humidity.data}}</text>
-      </view>
-    </view>
+  <view class="top_serve">
+    <view bindtap="switchTab" data-index="0" class="{{currentTab == 0 ? 'selected' : ''}}">天气</view>
+    <view bindtap="switchTab" data-index="1" class="{{currentTab == 1 ? 'selected' : ''}}">服务</view>
   </view>
+  <swiper class="swiper" indicator-dots="{{false}}" current="{{currentTab}}" bindchange="tabChange">
+    <!-- 天气 -->
+    <swiper-item class="swiper-item">
+      <view class="weather" wx:if="{{currentTab === 0 && weatherData}}">
+        <view class="city">{{weatherData.city.data}}</view>
+        <view class="weather-info">
+          <view class="weather-item">
+            <text class="label">{{weatherData.weather.text}}</text>
+            <text class="data">{{weatherData.weather.data}}</text>
+          </view>
+          <view class="weather-item">
+            <text class="label">{{weatherData.temperature.text}}</text>
+            <text class="data">{{weatherData.temperature.data}}°C</text>
+          </view>
+          <view class="weather-item">
+            <text class="label">{{weatherData.winddirection.text}}</text>
+            <text class="data">{{weatherData.winddirection.data}}</text>
+          </view>
+          <view class="weather-item">
+            <text class="label">{{weatherData.windpower.text}}</text>
+            <text class="data">{{weatherData.windpower.data}}</text>
+          </view>
+          <view class="weather-item">
+            <text class="label">{{weatherData.humidity.text}}</text>
+            <text class="data">{{weatherData.humidity.data}}</text>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+    <!-- 服务 -->
+    <swiper-item>
+      <view class="service" wx:if="{{currentTab === 1}}">
+        <view bind:tap="rimService" class="route">
+          <image src="../image/周边服务.png" alt="" class="icon" />
+          <text class="title">周边服务</text>
+        </view>
+        <view bindtap="serviceDisplay" data-type="美食" class="route">
+          <image src="../image/美食.png" alt="" class="icon" />
+          <text class="title">美食</text>
+        </view>
+        <view bindtap="serviceDisplay" data-type="停车场" class="route">
+          <image src="../image/停车场.png" alt="" class="icon" />
+          <text class="title">停车场</text>
+        </view>
+        <view bindtap="serviceDisplay" data-type="酒店" class="route">
+          <image src="../image/旅行酒店.png" alt="" class="icon" />
+          <text class="title">酒店</text>
+        </view>
+        <view bindtap="serviceDisplay" data-type="景点" class="route">
+          <image src="../image/景点景区.png" alt="" class="icon" />
+          <text class="title">景区</text>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
   <!-- 推荐 -->
   <view style="font-weight: bold; padding: 2%;">
     推荐

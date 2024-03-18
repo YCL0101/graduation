@@ -4,9 +4,9 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "requiredPrivateInfos":[
+  "requiredPrivateInfos": [
     "getLocation"
-    ],
+  ],
   "pages": [
     "pages/index/index",
     "pages/me/me",
@@ -23,7 +23,8 @@
     "pages/roam/roam",
     "pages/ai/ai",
     "pages/rimService/rimService",
-    "pages/inputtips/inputtips"
+    "pages/inputtips/inputtips",
+    "pages/serviceDisplay/serviceDisplay"
   ],
   "lazyCodeLoading": "requiredComponents",
   "window": {
@@ -33,27 +34,32 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "主页",
-      "iconPath": "pages/image/主页.png",
-      "selectedIconPath": "pages/image/主页选中.png"
-    }, {
-      "pagePath": "pages/community/community",
-      "text": "社区",
-      "iconPath": "pages/image/社区.png",
-      "selectedIconPath": "pages/image/社区选中.png"
-    }, {
-      "pagePath": "pages/diary/diary",
-      "text": "笔记",
-      "iconPath": "pages/image/笔记.png",
-      "selectedIconPath": "pages/image/笔记选中.png"
-    }, {
-      "pagePath": "pages/me/me",
-      "text": "我的",
-      "iconPath": "pages/image/我的.png",
-      "selectedIconPath": "pages/image/我的选中.png"
-    }]
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "主页",
+        "iconPath": "pages/image/主页.png",
+        "selectedIconPath": "pages/image/主页选中.png"
+      },
+      {
+        "pagePath": "pages/community/community",
+        "text": "社区",
+        "iconPath": "pages/image/社区.png",
+        "selectedIconPath": "pages/image/社区选中.png"
+      },
+      {
+        "pagePath": "pages/diary/diary",
+        "text": "笔记",
+        "iconPath": "pages/image/笔记.png",
+        "selectedIconPath": "pages/image/笔记选中.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "pages/image/我的.png",
+        "selectedIconPath": "pages/image/我的选中.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }

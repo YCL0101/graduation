@@ -10,6 +10,13 @@
         "miniprogram": {
             "list": [
                 {
+                    "name": "pages/gourmetFood/gourmetFood",
+                    "pathName": "pages/gourmetFood/gourmetFood",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
                     "name": "pages/repast/repast",
                     "pathName": "pages/index/index",
                     "query": "",

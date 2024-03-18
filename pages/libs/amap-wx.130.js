@@ -451,6 +451,7 @@ AMapWX.prototype.getPoiAround = function (a) {
         "content-type": "application/json"
       },
       success: function (g) {
+        // console.log(g.data)
         if (g.data.status && "1" == g.data.status) {
           if ((g = g.data) && g.pois) {
             for (var h = [], f = 0; f < g.pois.length; f++) {
