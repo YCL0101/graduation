@@ -4,20 +4,32 @@
   justify-content: space-between;
   font-size: 40rpx;
 }
-.selected {
-  color: rgba(83, 214, 231, 0.753); /* 设置点击态的文字颜色为红色 */
-  /* font-weight: bold; 设置点击态的文字加粗 */
-}
-
-
-
 .top_serve view {
   width: 50%;
   text-align: center;
   padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+.selected_first {
+  color: rgba(83, 214, 231, 0.753); 
+}
+.selected_first2 {
+  border-bottom-right-radius: 12px; /* 右下角圆角半径为 10px */
+  border-bottom: 1rpx solid rgba(129, 126, 126, 0.418);
+  border-right: 1rpx solid rgba(129, 126, 126, 0.418);
+  box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.01); /* 添加 inset 关键字，使阴影呈现在元素内部 */
+}
+.selected_second {
+  color: rgba(83, 214, 231, 0.753); 
+}
+.selected_second2 {
+  border-bottom-left-radius: 12px; /* 右下角圆角半径为 10px */
+  border-bottom: 1rpx solid rgba(129, 126, 126, 0.418);
+  border-left: 1rpx solid rgba(129, 126, 126, 0.418);
+  box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.01); /* 添加 inset 关键字，使阴影呈现在元素内部 */
 }
 .swiper{
-  height:400rpx ;
+  height:400rpx;
 }
 .weather {
   font-size: 15px;
@@ -25,6 +37,7 @@
   /* 设置页面边距，rpx是适配不同屏幕的单位 */
   border-radius: 20rpx;
   /* box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); */
+
 }
 
 .city {

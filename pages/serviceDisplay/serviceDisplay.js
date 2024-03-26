@@ -34,5 +34,27 @@ Page({
     });
     myAmapFun.getPoiAround(params)
   },
-
+  get_button(e) {
+    console.log(e)
+    const location=e.currentTarget.dataset.location;
+    const name=e.currentTarget.dataset.name;
+//拆分经纬度
+   const [longitude, latitude] = location.split(',');
+    let endPoint = JSON.stringify({ //终点
+      'name': name,
+      'location': {
+        'lat': latitude,
+        'lng': longitude
+      }
+    })
+    console.log(endPoint)
+    wx.navigateToMiniProgram({
+      appId: 'wx7643d5f831302ab0',
+      path: 'pages/multiScheme/multiScheme?endLoc=' + endPoint,
+      envVersion: 'release',
+      success(res) {
+        console.log(res)
+      }
+    })
+  }
 })

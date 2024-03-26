@@ -8,39 +8,45 @@ Page({
     latitude: '',
     longitude: '',
     textData: {},
-    city: ''
+    city: '',
+
   },
   //定义了页面的初始数据，包括地图标记、纬度、经度、文本数据和城市信息。
-  makertap: function(e) {
+  makertap: function (e) {
     var id = e.markerId;
     var that = this;
-    that.showMarkerInfo(markersData,id);
-    that.changeMarkerColor(markersData,id);
+    that.showMarkerInfo(markersData, id);
+    that.changeMarkerColor(markersData, id);
   },
   //定义了一个点击地图标记的事件处理函数，当标记被点击时，显示标记信息并改变标记颜色。
-  onLoad: function(e) {
+  onLoad: function (e) {
     var that = this;
     var key = 'fa30e15f69cf95ac691c8d704cc40b73';
-    var myAmapFun = new amapFile.AMapWX({key: key});
+    var myAmapFun = new amapFile.AMapWX({
+      key: key
+    });
     var params = {
       iconPathSelected: '../image/marker_checked.png',
       iconPath: '../image/marker.png',
-      success: function(data){
+      success: function (data) {
         markersData = data.markers;
         var poisData = data.poisData;
         var markers_new = [];
-        markersData.forEach(function(item,index){
+        markersData.forEach(function (item, index) {
+          // console.log(item)
           markers_new.push({
             id: item.id,
             latitude: item.latitude,
             longitude: item.longitude,
             iconPath: item.iconPath,
             width: item.width,
-            height: item.height
+            height: item.height,
+            name: item.name
           })
 
-        })
-        if(markersData.length > 0){
+        });
+
+        if (markersData.length > 0) {
           that.setData({
             markers: markers_new
           });
@@ -53,11 +59,11 @@ Page({
           that.setData({
             longitude: markersData[0].longitude
           });
-          that.showMarkerInfo(markersData,0);
-        }else{
+          that.showMarkerInfo(markersData, 0);
+        } else {
           wx.getLocation({
             type: 'gcj02',
-            success: function(res) {
+            success: function (res) {
               that.setData({
                 latitude: res.latitude
               });
@@ -68,7 +74,7 @@ Page({
                 city: '北京市'
               });
             },
-            fail: function(){
+            fail: function () {
               that.setData({
                 latitude: 39.909729
               });
@@ -80,7 +86,7 @@ Page({
               });
             }
           })
-          
+
           that.setData({
             textData: {
               name: '抱歉，未找到结果',
@@ -88,22 +94,22 @@ Page({
             }
           });
         }
-        
+
       },
-      fail: function(info){
+      fail: function (info) {
         // wx.showModal({title:info.errMsg})
       }
     }
-    if(e && e.keywords){
+    if (e && e.keywords) {
       params.querykeywords = e.keywords;
     }
     myAmapFun.getPoiAround(params)
   },
   //页面加载时的操作，包括初始化地图及相关数据，获取周边的兴趣点信息，并设置相应的数据。
-  bindInput: function(e){
+  bindInput: function (e) {
     var that = this;
     var url = '../inputtips/inputtips';
-    if(e.target.dataset.latitude && e.target.dataset.longitude && e.target.dataset.city){
+    if (e.target.dataset.latitude && e.target.dataset.longitude && e.target.dataset.city) {
       var dataset = e.target.dataset;
       url = url + '?lonlat=' + dataset.longitude + ',' + dataset.latitude + '&city=' + dataset.city;
     }
@@ -111,22 +117,24 @@ Page({
       url: url
     })
   },
-  showMarkerInfo: function(data,i){
+  showMarkerInfo: function (data, i) {
     var that = this;
     that.setData({
       textData: {
         name: data[i].name,
-        desc: data[i].address
+        desc: data[i].address,
+        latitude: data[i].latitude,
+        longitude: data[i].longitude,
       }
     });
   },
-  changeMarkerColor: function(data,i){
+  changeMarkerColor: function (data, i) {
     var that = this;
     var markers = [];
-    for(var j = 0; j < data.length; j++){
-      if(j==i){
+    for (var j = 0; j < data.length; j++) {
+      if (j == i) {
         data[j].iconPath = "../image/marker_checked.png";
-      }else{
+      } else {
         data[j].iconPath = "../image/marker.png";
       }
       markers.push({
@@ -141,6 +149,31 @@ Page({
     that.setData({
       markers: markers
     });
+  },
+  //调用腾讯地图导航
+  get_button(e) {
+    // console.log(e)
+    const longitude = e.currentTarget.dataset.longitude;
+    const latitude = e.currentTarget.dataset.latitude;
+    const name = e.currentTarget.dataset.name;
+    //拆分经纬度
+    //  const [longitude, latitude] = location.split(',');
+    let endPoint = JSON.stringify({ //终点
+      'name': name,
+      'location': {
+        'lat': latitude,
+        'lng': longitude
+      }
+    })
+    console.log(endPoint)
+    wx.navigateToMiniProgram({
+      appId: 'wx7643d5f831302ab0',
+      path: 'pages/multiScheme/multiScheme?endLoc=' + endPoint,
+      envVersion: 'release',
+      success(res) {
+        console.log(res)
+      }
+    })
   }
 
 })

@@ -156,7 +156,12 @@ Page({
     // 完成下拉刷新后，调用 wx.stopPullDownRefresh() 来停止刷新动画
     wx.stopPullDownRefresh();
   },
-
+  //AI问答
+  goAI() {
+    wx.navigateTo({
+      url: '../ai/ai',
+    })
+  },
 
 
 })

@@ -118,6 +118,8 @@ Page({
       url: '../pathDetails/pathDetails?pathDetails=' + JSON.stringify(pathDetails),
     });
   },
+
+  //调用腾讯地图导航
   get_button() {
    
     let endPoint = JSON.stringify({ //终点

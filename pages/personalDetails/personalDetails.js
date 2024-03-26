@@ -1,3 +1,4 @@
+
 const app = getApp();
 const host = app.globalData.host;
 Page({

@@ -1,5 +1,5 @@
-<view wx:for="{{poisData}}" wx:key="id">
-  <view class="item-container">
+<view wx:for="{{poisData}}" wx:key="id"  >
+  <view class="item-container" data-location="{{item.location}}" data-name="{{item.name}}" bind:tap="get_button" >
     <!-- 图片 -->
     <image class="item-image" src="https://fakeimg.pl/300x185/F3F3F3?text={{keyword}}<:rooThink:596576798351949847>&font=noto" mode="aspectFill" />
     <!-- 介绍 -->

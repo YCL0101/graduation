@@ -13,11 +13,12 @@ image{
 }
 
 .title {
-  /* font-size: 40rpx; 天气信息标题的样式 */
+  font-size: 30rpx; 
+  /* 天气信息标题的样式 */
   font-weight:bold;
-  font-weight: bold;
   margin-top: 20rpx;
   margin-bottom: 20rpx;
+  padding-left: 20rpx;
 }
 
 .weather-info {
@@ -27,7 +28,7 @@ image{
   margin-bottom: 20rpx;
   border-radius: 20rpx;
   /* 设置天气信息区域圆角 */
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
 }
 
 .weather-table {
@@ -46,7 +47,53 @@ image{
   color: #333; /* 文字颜色 */
   text-align: center; /* 文字水平居中 */
 }
+/* 拥挤度模块样式 */
 
+.crowdedness-info {
+  width: calc(100%-20rpx);
+  margin: 10rpx;
+  margin-bottom: 20rpx;
+  margin-top: 10px;
+  border-radius: 20rpx;
+  /* 设置天气信息区域圆角 */
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.crowdedness-table {
+  display: block;
+}
+
+.crowdedness-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.crowdedness-cell {
+  width: 33%;
+  text-align: center;
+}
+
+/* 根据拥挤度等级设置不同的单元格背景颜色 */
+.crowdedness-cell.free {
+  background-color: #98FB98; /* 空闲 - 鲜绿色 */
+}
+
+.crowdedness-cell.moderate {
+  background-color: #FFD700; /* 适中 - 金色 */
+}
+
+.crowdedness-cell.busy {
+  background-color: #FFA500; /* 繁忙 - 橙色 */
+}
+
+.crowdedness-cell.overloaded {
+  background-color: #FF4500; /* 过载 - 橙红色 */
+}
+
+
+
+/* 功能区模块样式 */
 .container {
   display: flex;
   flex-direction: row;
@@ -65,9 +112,5 @@ image{
   height:30px;
 }
 
-.title {
-  margin-top: 10px;
-  font-size: 20rpx;
-}
 
 

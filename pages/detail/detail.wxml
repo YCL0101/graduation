@@ -27,22 +27,41 @@
       </block>
     </view>
   </view>
-  <!-- 功能区 -->
-  <view class="title">功能区</view>
-<view class="container">
-  <view bindtap="goPath" class="route">
-    <image src="../image/查询路线.png" alt="" class="icon" />
-    <text class="title">路线规划</text>
-  </view>
-  <view bindtap="goRoam" class="route" data-roamUrl="{{detailList.roamUrl}}">
-    <image src="../image/虚拟漫游.png" alt="" class="icon" />
-    <text class="title">虚拟漫游</text>
-  </view>
-  <view bindtap="goAI" class="route">
-    <image src="../image/AI问答.png" alt="" class="icon" />
-    <text class="title">AI问答</text>
+  <!-- 景区拥挤度展示模块 -->
+  <view class="title">景区近七日拥挤度</view>
+<!-- 景区拥挤度信息展示模块 -->
+<view class="crowdedness-info">
+  <view class="crowdedness-table">
+    <view class="crowdedness-row">
+      <view class="crowdedness-cell">日期</view>
+      <view class="crowdedness-cell">拥挤度值</view>
+      <view class="crowdedness-cell">拥挤度等级</view>
+    </view>
+    <block wx:for="{{crowdednessData}}" wx:for-item="data" wx:key="index">
+      <view class="crowdedness-row">
+        <view class="crowdedness-cell">{{data.date}}</view>
+        <view class="crowdedness-cell">{{data.value}}</view>
+        <view class="crowdedness-cell {{data.degree}}">{{data.classification}}</view>
+      </view>
+    </block>
   </view>
 </view>
+
+
+
+  <!-- 功能区 -->
+  <view class="title">功能区</view>
+  <view class="container">
+    <view bindtap="goPath" class="route">
+      <image src="../image/路线规划.png" alt="" class="icon" />
+      <text class="title">路线规划</text>
+    </view>
+    <view bindtap="goRoam" class="route" data-roamUrl="{{detailList.roamUrl}}">
+      <image src="../image/虚拟漫游.png" alt="" class="icon" />
+      <text class="title">虚拟漫游</text>
+    </view>
+
+  </view>
 
 
 

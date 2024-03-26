@@ -1,6 +1,6 @@
 const app = getApp()
 const host = app.globalData.host;
-const key = '50a03a505039735d0e6c3bdf79edf32f';//高德web服务key
+const key = '50a03a505039735d0e6c3bdf79edf32f'; //高德web服务key
 // var amapFile = require('../libs/amap-wx.130.js');
 Page({
   data: {
@@ -8,7 +8,8 @@ Page({
     detailList: [],
     host: host,
     weather: {}, //天气
-    location: '' //经纬度
+    location: '', //经纬度
+    crowdednessData: '', //拥挤度数据
   },
 
   onLoad(options) {
@@ -16,6 +17,8 @@ Page({
     const ScenicSpotID = options.id;
     // console.log(ScenicSpotID);
     this.getDetail(ScenicSpotID);
+    //景区拥挤度计算
+    this.calculationResults();
 
   },
   //请求景点详情
@@ -82,9 +85,81 @@ Page({
       }
     });
   },
+
+// 计算拥挤度函数
+calculateCrowdedness(bookings, capacity) {
+  return bookings.map(booking => booking / capacity);
+},
+
+// 划分拥挤度档次函数
+classifyCrowdedness(crowdednessData) {
+  return crowdednessData.map(data => {
+    const level = data.value;
+    if (level <= 0.5) return {
+      date: data.date,
+      value: level,
+      classification: '空闲',
+      degree: 'free'
+    };
+    if (level <= 0.75) return {
+      date: data.date,
+      value: level,
+      classification: '适中',
+      degree: 'moderate'
+    };
+    if (level <= 0.9) return {
+      date: data.date,
+      value: level,
+      classification: '繁忙',
+      degree: 'busy'
+    };
+    return {
+      date: data.date,
+      value: level,
+      classification: '过载',
+      degree: 'overloaded'
+    };
+  });
+},
+
+//景区拥挤度算法
+calculationResults() {
+  // 示例数据
+  const maxCapacity = 5000; // 景点最大承载量
+  const dailyBookings = [
+    { date: '2024-03-19', booking: 1200 },
+    { date: '2024-03-20', booking: 3000 },
+    { date: '2024-03-21', booking: 4500 },
+    { date: '2024-03-22', booking: 4800 },
+    { date: '2024-03-23', booking: 5000 },
+    { date: '2024-03-24', booking: 5200 },
+    { date: '2024-03-25', booking: 2500 }
+  ]; // 最近一周每天的预定票量及日期信息
+
+  const crowdednessLevels = this.calculateCrowdedness(
+    dailyBookings.map(data => data.booking),
+    maxCapacity
+  );console.log(crowdednessLevels)
+  const crowdednessData = this.classifyCrowdedness(
+    dailyBookings.map((data, index) => ({ date: data.date, value: crowdednessLevels[index] }))
+  );
+  
+  this.setData({
+    crowdednessData: crowdednessData,
+  });
+
+  // 输出结果
+  console.log('拥挤度等级:', crowdednessData);
+},
+
+
+
   // 记录用户浏览类型
   record(types) {
     const storedUserInfo = wx.getStorageSync("personalDetails");
+    if (!storedUserInfo) {
+      return;
+    }
     const userId = storedUserInfo.id;
     let interestBias = wx.getStorageSync('interestBias') || {
       "自然景区": 0,
@@ -132,7 +207,7 @@ Page({
     const location = this.data.location;
     const endAddress = this.data.detailList.ScenicSpotName;
     wx.navigateTo({
-      url: '../path/path?location=' + location+'&endAddress='+endAddress,
+      url: '../path/path?location=' + location + '&endAddress=' + endAddress,
     })
   },
   //虚拟漫游
@@ -144,10 +219,5 @@ Page({
       url: '../roam/roam?roamurl=' + roamurl,
     })
   },
-  //AI问答
-  goAI(){
-    wx.navigateTo({
-      url: '../ai/ai',
-    })
-  },
+
 })
