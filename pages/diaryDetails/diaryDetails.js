@@ -28,7 +28,7 @@ Page({
 
   },
 
-  // 发送数据到后端
+  // 发送数据到后端保存
   sendDataToBackend() {
     
     const {
@@ -192,6 +192,8 @@ Page({
           duration: 2000, // 提示框显示时间，单位毫秒
           mask: true, // 是否显示透明蒙层，防止触摸穿透
         });
+        //发布成功后进行保存
+        this.sendDataToBackend();
       },
       fail: (error) => {
         console.error(error);

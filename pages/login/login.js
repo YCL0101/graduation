@@ -23,6 +23,16 @@ Page({
   //   });
   // },
   getCode() {
+    const phoneNumber =this.data.phoneNumber;
+    // 在发起 wx.request 之前进行手机号和验证码格式的检查
+    if (!this.isValidPhoneNumber(phoneNumber)) {
+      // 提示用户手机号格式不正确
+      wx.showToast({
+        title: '请输入正确的手机号',
+        icon: 'none',
+      });
+      return; 
+    }
     // 检查是否正在倒计时，避免重复点击
     if (this.data.countdown > 0) {
       return;

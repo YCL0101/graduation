@@ -15,7 +15,13 @@ Page({
     commentText: "", // 评论输入框的内容
     commentGroup: [] // 评论
   },
-
+  goUserinfo(e) {
+    console.log(e.currentTarget.dataset)
+   const userId=e.currentTarget.dataset.userid;
+    wx.navigateTo({
+      url: '../userinfo/userinfo?userId='+userId,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -45,8 +51,6 @@ Page({
 
   //请求帖子数据
   fetchPostData(postId) {
-    // 在这里进行请求数据的操作，你可以使用 wx.request 或其他方式
-    // 例如：
     wx.request({
       url: host + '/api/getPostById',
       data: {
@@ -70,7 +74,7 @@ Page({
 
           // 更新到小程序的数据
           this.setData({
-            postInfo: res.data.postInfo, // 假设接口返回的数据包含在 post 字段中
+            postInfo: res.data.postInfo,
             // commentGroup: commentGroup
           });
           console.log(res.data.postInfo)

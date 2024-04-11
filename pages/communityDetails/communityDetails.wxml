@@ -1,5 +1,5 @@
 <view>
-  <view class="post-info">
+  <view class="post-info" data-userId="{{postInfo.userId}}" bind:tap="goUserinfo">
     <image class="avatar" src="{{host}}/headPortrait/{{avatarUrl}}"></image>
     <view class="info-text">
       <text class="nickname">{{userName}}</text>

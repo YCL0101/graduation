@@ -35,6 +35,7 @@
           </view>
         </view>
       </view>
+      <view wx:else="{{currentTab === 0 && weatherData}}" style="width: auto; text-align: center;">未授权位置信息！</view>
     </swiper-item>
     <!-- 服务 -->
     <swiper-item>

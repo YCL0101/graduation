@@ -24,7 +24,8 @@
     "pages/ai/ai",
     "pages/rimService/rimService",
     "pages/inputtips/inputtips",
-    "pages/serviceDisplay/serviceDisplay"
+    "pages/serviceDisplay/serviceDisplay",
+    "pages/userinfo/userinfo"
   ],
   "lazyCodeLoading": "requiredComponents",
   "window": {

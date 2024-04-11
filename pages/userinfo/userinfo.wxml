@@ -1,0 +1,17 @@
+<!-- 个人信息展示页面 -->
+<view class="profile-container">
+  <image class="avatar" src="{{host}}/headPortrait/{{userinfo.avatarUrl}}" mode="aspectFill"/>
+  <view class="user-info">
+    <view class="name-gender-birthday">
+      <text class="username">{{userinfo.userName}}</text>
+      <text class="gender">{{userinfo.gender}}</text>
+      <text class="birthday">{{userinfo.birthday}}</text>
+    </view>
+    <view class="signature">
+      {{userinfo.signature}}
+    </view>
+    <view class="region">
+      居住地：{{userinfo.region}}
+    </view>
+  </view>
+</view>
